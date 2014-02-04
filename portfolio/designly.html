@@ -1,0 +1,632 @@
+
+<html>
+  <head>
+    <meta charset="utf8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="description" content="The Designly.com Editor"/>
+    <meta name="author" content="WizzyWig, Inc."/>
+    <title>Designly - Editor</title>
+    <link rel="stylesheet" href="dznly-files/v1.55/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="dznly-files/v1.55/css/styles.css"/>
+    <link rel="stylesheet" href="dznly-files/v1.55/css/farbtastic.css"/>
+    <link rel="stylesheet" href="dznly-files/v1.55/css/guiders.css"/>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic|Lato:400,700,400italic,700italic|Arvo:400,700,400italic,700italic|Playfair+Display:400,700,400italic,700italic|PT+Sans:400,700,400italic,700italic|Ubuntu:400,700,400italic,700italic|Averia+Serif+Libre:400,700,400italic,700italic|Source+Code+Pro:400,700|Exo:400,700,400italic,700italic|Merriweather:400,400italic,700italic,700|Montserrat:400,700|Alegreya:400italic,700italic,400,700|Open+Sans: 400,400italic,700,700italic|Amaranth:400,400italic,700,700italic|Lobster+Two:400,400italic,700,700italic|Vollkorn:400italic,700italic,400,700|Noto+Sans:400italic,700italic,400,700|Noto+Serif:400italic,700italic,400,700|Oswald:400,700|Raleway:400,700|Josefin+Sans:400,700,400italic,700italic|Roboto:400,400italic,700italic,700|PT+Serif:400,700,400italic,700italic|Cabin:400,700,400italic,700italic|Droid+Serif:400,700,400italic,700italic|Josefin+Slab:400,700,400italic,700italic|Lora:400,700,400italic,700italic|Pacifico|Ubuntu+Mono:400,700,400italic,700italic|Ubuntu:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+    <script src="dznly-files/v1.55/js/lib/bootstrap.min.js" type="text/javascript"></script>
+    <script src="dznly-files/v1.55/js/lib/require.js"></script>
+    <script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
+    <script type="text/javascript">
+      requirejs.config({
+        waitSeconds: 30,
+        baseUrl: 'dznly-files/v1.55/js'
+      });
+      require(['edit']);
+      var mixpanel = {
+        track: function() {}
+      };
+      var site_info = {
+        id: '',
+        name: '',
+        resource_uri: ''
+        //- stacks: []
+      },
+      site_json =  {} ,
+      stack_json = {"fonts": "http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Open+Sans:400,400italic,700,700italic", "global_slides": [], "homepage": true, "id": 142, "name": "HomePage", "resource_uri": "/api/v1/stacks/142/", "site": "/api/v1/sites/76/", "slides": [{"bricks": [{"bgH": 17, "bgW": 132, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<h1 style=\"font-size: 30px; font-family: Lato; background-size: 132px 19px; height: 40px; width: 132px; color: rgb(255, 255, 255); background-position: 0px 0px;\" class=\"brick-content\">Designly</h1>", "name": "Heading", "position": {"bottom": 59, "height": 40, "left": 0, "right": 132, "top": 19, "width": 132}, "scaling": false, "slide": "/api/v1/slides/325/", "stackOrder": 0, "style": "top: 19px; left: 0px; width: 132px; height: 40px; z-index: 0; text-align: left;", "thumb_html": "<i class=\"icon-font\"></i><h5>Heading</h5>", "wrapper": ""}, {"bgH": 19, "bgW": 132, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<h1 style=\"font-size: 20px; font-family: Lato; background-size: 103px 13px; height: 28px; width: 103px; color: rgb(64, 63, 64); font-weight: normal; background-position: 0px 0px;\" class=\"brick-content\">Login</h1>", "name": "Heading", "position": {"bottom": 53, "height": 28, "left": 717, "right": 820, "top": 25, "width": 103}, "scaling": false, "slide": "/api/v1/slides/325/", "stackOrder": 0, "style": "top: 25px; left: 717px; width: 103px; height: 28px; z-index: 0; text-align: right;", "thumb_html": "<i class=\"icon-font\"></i><h5>Heading</h5>", "wrapper": "<a href=\"http://#\"></a>"}, {"bgH": 19, "bgW": 132, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<h1 style=\"font-size: 20px; font-family: Lato; background-size: 103px 13px; height: 28px; width: 103px; color: rgb(64, 63, 64); font-weight: normal; background-position: 0px 0px;\" class=\"brick-content\">Signup</h1>", "name": "Heading", "position": {"bottom": 53, "height": 28, "left": 610, "right": 713, "top": 25, "width": 103}, "scaling": false, "slide": "/api/v1/slides/325/", "stackOrder": 1, "style": "top: 25px; left: 610px; width: 103px; height: 28px; z-index: 1; text-align: right;", "thumb_html": "<i class=\"icon-font\"></i><h5>Heading</h5>", "wrapper": "<a href=\"http://#\"></a>"}, {"bgH": 19, "bgW": 132, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<h1 style=\"font-size: 20px; font-family: Lato; background-size: 103px 13px; height: 28px; width: 103px; color: rgb(64, 63, 64); font-weight: normal; background-position: 0px 0px;\" class=\"brick-content\">About</h1>", "name": "Heading", "position": {"bottom": 53, "height": 28, "left": 487, "right": 590, "top": 25, "width": 103}, "scaling": false, "slide": "/api/v1/slides/325/", "stackOrder": 2, "style": "top: 25px; left: 487px; width: 103px; height: 28px; z-index: 2; text-align: right;", "thumb_html": "<i class=\"icon-font\"></i><h5>Heading</h5>", "wrapper": "<a href=\"http://#\"></a>"}], "fonts": "Lato:400,700,400italic,700italic", "has_content": false, "height": "79", "id": 325, "is_live": false, "is_template": false, "name": "My New Homepage", "order_index": 0, "resource_uri": "/api/v1/slides/325/", "site": null, "slide_html": null, "slide_style": "background-color: rgb(21, 25, 32);", "slide_type": null, "stack": "/api/v1/stacks/142/", "style_sheet": "#section-325{margin:0;background-color: rgb(21, 25, 32);}#section-325 .slide-int{box-shadow:none;height:79px;}#section-325 .el0{top: 19px;left: 0px;width: 132px;height: 40px;z-index: 0;text-align: left;}#section-325 .el0 .brick-content{font-size: 30px;font-family: Lato;background-size: 132px 19px;height: 40px;width: 132px;color: rgb(255, 255, 255);background-position: 0px 0px;}#section-325 .el1{top: 25px;left: 717px;width: 103px;height: 28px;z-index: 0;text-align: right;}#section-325 .el1 .brick-content{font-size: 20px;font-family: Lato;background-size: 103px 13px;height: 28px;width: 103px;color: rgb(64, 63, 64);font-weight: normal;background-position: 0px 0px;}#section-325 .el2{top: 25px;left: 610px;width: 103px;height: 28px;z-index: 1;text-align: right;}#section-325 .el2 .brick-content{font-size: 20px;font-family: Lato;background-size: 103px 13px;height: 28px;width: 103px;color: rgb(64, 63, 64);font-weight: normal;background-position: 0px 0px;}#section-325 .el3{top: 25px;left: 487px;width: 103px;height: 28px;z-index: 2;text-align: right;}#section-325 .el3 .brick-content{font-size: 20px;font-family: Lato;background-size: 103px 13px;height: 28px;width: 103px;color: rgb(64, 63, 64);font-weight: normal;background-position: 0px 0px;}", "template_index": null, "thumbnail": null, "timestamp": "2013-09-10T07:18:50.978231"}, {"bricks": [{"bgH": 151, "bgW": 470, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<h1 style=\"font-family: Lato; font-size: 65px; background-size: 470px 140px; height: 177px; width: 470px; color: rgb(255, 255, 255); background-position: 0px 0px;\" class=\"brick-content\">5 Years of the App Store.</h1>", "name": "Heading", "position": {"bottom": 353, "height": 177, "left": 350, "right": 820, "top": 176, "width": 470}, "scaling": false, "slide": "/api/v1/slides/326/", "stackOrder": 1, "style": "top: 176px; left: 350px; width: 470px; height: 177px; z-index: 1;", "thumb_html": "<i class=\"icon-font\"></i><h5>Heading</h5>", "wrapper": ""}, {"bgH": 83, "bgW": 470, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<h1 style=\"font-family: Lato; font-size: 35px; background-size: 470px 102px; height: 102px; width: 470px; color: rgb(215, 237, 244); font-weight: normal; background-position: 0px 0px;\" class=\"brick-content\">Cras justo odio, dapibus ac facilisis in, egestas eget quam.</h1>", "name": "Heading", "position": {"bottom": 463, "height": 102, "left": 350, "right": 820, "top": 361, "width": 470}, "scaling": false, "slide": "/api/v1/slides/326/", "stackOrder": 2, "style": "top: 361px; left: 350px; width: 470px; height: 102px; z-index: 2;", "thumb_html": "<i class=\"icon-font\"></i><h5>Heading</h5>", "wrapper": ""}, {"bgH": 690, "bgW": 330, "bgXPos": 0, "bgYPos": 0, "category": "Image", "css": {}, "description": "Brick Description", "html": "<div class=\"image-brick brick-content\" src=\"/static/img/placeholder.gif\" style=\"font-family: 'Open Sans'; background-image: url(dznly-files/0Sm4RSkRRqy6vYwsanO7_iphone-1.png); background-size: 299px 625px; width: 299px; height: 625px; background-position: 0px 0px; background-repeat: initial initial;\"></div>", "name": "Image", "position": {"bottom": 689, "height": 625, "left": 0, "right": 299, "top": 64, "width": 299}, "scaling": true, "slide": "/api/v1/slides/326/", "stackOrder": 1, "style": "top: 64px; left: 0px; width: 299px; height: 625px; z-index: 1;", "thumb_html": "<i class=\"icon-picture\"></i><h5>Image</h5>", "wrapper": ""}, {"bgH": 53, "bgW": 223, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<h1 style=\"font-family: Lato; font-size: 35px; background-size: 229px 53px; height: 53px; width: 232px; color: rgb(236, 245, 248); font-weight: normal; background-position: 0px 0px;\" class=\"brick-content\">Get It Now</h1>", "name": "Heading", "position": {"bottom": 549, "height": 53, "left": 352, "right": 584, "top": 496, "width": 232}, "scaling": false, "slide": "/api/v1/slides/326/", "stackOrder": 4, "style": "top: 496px; left: 352px; width: 232px; height: 53px; z-index: 4; text-align: center;", "thumb_html": "<i class=\"icon-font\"></i><h5>Heading</h5>", "wrapper": ""}, {"bgH": 68, "bgW": 230, "bgXPos": 0, "bgYPos": 0, "category": "Shapes", "css": {}, "description": "Brick Description", "html": "<div class=\"square-shape brick-content\" style=\"font-family: 'Open Sans'; background-size: 237px 68px; height: 68px; width: 237px; background-color: rgb(234, 74, 52); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; background-position: 0px 0px;\"> </div>", "name": "Square", "position": {"bottom": 553, "height": 68, "left": 350, "right": 587, "top": 485, "width": 237}, "scaling": true, "slide": "/api/v1/slides/326/", "stackOrder": 3, "style": "top: 485px; left: 350px; width: 237px; height: 68px; z-index: 3;", "thumb_html": "<i class=\"icon-stop\"></i><h5>Square</h5>", "wrapper": ""}, {"bgH": 68, "bgW": 230, "bgXPos": 0, "bgYPos": 0, "category": "Shapes", "css": {}, "description": "Brick Description", "html": "<div class=\"square-shape brick-content\" style=\"font-family: 'Open Sans'; background-size: 237px 68px; height: 68px; width: 237px; background-color: rgb(194, 55, 35); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; background-position: 0px 0px;\"> </div>", "name": "Square", "position": {"bottom": 560, "height": 68, "left": 350, "right": 587, "top": 492, "width": 237}, "scaling": true, "slide": "/api/v1/slides/326/", "stackOrder": 0, "style": "top: 492px; left: 350px; width: 237px; height: 68px; z-index: 0;", "thumb_html": "<i class=\"icon-stop\"></i><h5>Square</h5>", "wrapper": ""}, {"category": "Image", "css": {}, "description": "Brick Description", "html": "<div class=\"image-brick brick-content\" src=\"/static/img/placeholder.gif\" style=\"font-family: 'Open Sans'; background-image: url(dznly-files/o75dkTJLTUWkND9hlRGu_doubleclick.png); background-size: 300px 115px; width: 300px; height: 115px; background-position: 0px 0px; background-repeat: initial initial;\"></div>", "name": "Image", "position": {"bottom": 193, "height": 115, "left": 461, "right": 761, "top": 78, "width": 300}, "scaling": true, "slide": "/api/v1/slides/326/", "stackOrder": 5, "style": "top: 78px; left: 461px; width: 300px; height: 115px; z-index: 5;", "thumb_html": "<i class=\"icon-picture\"></i><h5>Image</h5>", "wrapper": ""}, {"category": "Image", "css": {}, "description": "Brick Description", "html": "<div class=\"image-brick brick-content\" src=\"/static/img/placeholder.gif\" style=\"font-family: 'Open Sans'; background-image: url(dznly-files/ScioNPMqR7KTgX1YZyKD_drag-and-resize.png); background-size: 320px 80px; width: 320px; height: 80px; background-position: 0px 0px; background-repeat: initial initial;\"></div>", "name": "Image", "position": {"bottom": 730, "height": 80, "left": 291, "right": 611, "top": 650, "width": 320}, "scaling": true, "slide": "/api/v1/slides/326/", "stackOrder": 6, "style": "top: 650px; left: 291px; width: 320px; height: 80px; z-index: 6;", "thumb_html": "<i class=\"icon-picture\"></i><h5>Image</h5>", "wrapper": ""}], "fonts": "Lato:400,700,400italic,700italic|Open+Sans:400,400italic,700,700italic", "has_content": false, "height": "754", "id": 326, "is_live": false, "is_template": false, "name": "New Slide", "order_index": 1, "resource_uri": "/api/v1/slides/326/", "site": null, "slide_html": null, "slide_style": "background-image: url(dznly-files/bn5hFUNyTLEC3wvR6Voy_11%20copy.png);", "slide_type": null, "stack": "/api/v1/stacks/142/", "style_sheet": "#section-326{margin:0;background-image: url(dznly-files/bn5hFUNyTLEC3wvR6Voy_11%20copy.png);}#section-326 .slide-int{box-shadow:none;height:754px;}#section-326 .el0{top: 176px;left: 350px;width: 470px;height: 177px;z-index: 1;}#section-326 .el0 .brick-content{font-family: Lato;font-size: 65px;background-size: 470px 140px;height: 177px;width: 470px;color: rgb(255, 255, 255);background-position: 0px 0px;}#section-326 .el1{top: 361px;left: 350px;width: 470px;height: 102px;z-index: 2;}#section-326 .el1 .brick-content{font-family: Lato;font-size: 35px;background-size: 470px 102px;height: 102px;width: 470px;color: rgb(215, 237, 244);font-weight: normal;background-position: 0px 0px;}#section-326 .el2{top: 64px;left: 0px;width: 299px;height: 625px;z-index: 1;}#section-326 .el2 .brick-content{font-family: 'Open Sans';background-image: url(dznly-files/0Sm4RSkRRqy6vYwsanO7_iphone-1.png);background-size: 299px 625px;width: 299px;height: 625px;background-position: 0px 0px;background-repeat: initial initial;}#section-326 .el3{top: 496px;left: 352px;width: 232px;height: 53px;z-index: 4;text-align: center;}#section-326 .el3 .brick-content{font-family: Lato;font-size: 35px;background-size: 229px 53px;height: 53px;width: 232px;color: rgb(236, 245, 248);font-weight: normal;background-position: 0px 0px;}#section-326 .el4{top: 485px;left: 350px;width: 237px;height: 68px;z-index: 3;}#section-326 .el4 .brick-content{font-family: 'Open Sans';background-size: 237px 68px;height: 68px;width: 237px;background-color: rgb(234, 74, 52);border-top-left-radius: 5px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;background-position: 0px 0px;}#section-326 .el5{top: 492px;left: 350px;width: 237px;height: 68px;z-index: 0;}#section-326 .el5 .brick-content{font-family: 'Open Sans';background-size: 237px 68px;height: 68px;width: 237px;background-color: rgb(194, 55, 35);border-top-left-radius: 5px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;background-position: 0px 0px;}#section-326 .el6{top: 78px;left: 461px;width: 300px;height: 115px;z-index: 5;}#section-326 .el6 .brick-content{font-family: 'Open Sans';background-image: url(dznly-files/o75dkTJLTUWkND9hlRGu_doubleclick.png);background-size: 300px 115px;width: 300px;height: 115px;background-position: 0px 0px;background-repeat: initial initial;}#section-326 .el7{top: 650px;left: 291px;width: 320px;height: 80px;z-index: 6;}#section-326 .el7 .brick-content{font-family: 'Open Sans';background-image: url(dznly-files/ScioNPMqR7KTgX1YZyKD_drag-and-resize.png);background-size: 320px 80px;width: 320px;height: 80px;background-position: 0px 0px;background-repeat: initial initial;}", "template_index": null, "thumbnail": null, "timestamp": "2013-09-10T07:18:50.990028"}, {"bricks": [{"bgH": 92, "bgW": 470, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<span style=\"display: inline-block; width: 419px; color: rgb(64, 63, 64); font-family: 'Open Sans'; background-size: 419px 92px; height: 89px; background-position: 0px 0px;\" class=\"brick-content\">Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a pharetra augue. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum.<br></span>", "name": "Text", "position": {"bottom": 307, "height": 89, "left": 0, "right": 419, "top": 218, "width": 419}, "scaling": false, "slide": "/api/v1/slides/327/", "stackOrder": 0, "style": "top: 218px; left: 0px; width: 419px; height: 89px; z-index: 0;", "thumb_html": "<i class=\"icon-align-left\"></i><h5>Text</h5>", "wrapper": ""}, {"bgH": 37, "bgW": 379, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<h1 style=\"font-family: 'Open Sans'; font-size: 35px; background-size: 445px 37px; height: 37px; width: 445px; font-weight: bold; color: rgb(40, 154, 182); background-position: 0px 0px;\" class=\"brick-content\"><font color=\"#3490a2\">Simplicity</font></h1>", "name": "Heading", "position": {"bottom": 164, "height": 37, "left": 0, "right": 445, "top": 127, "width": 445}, "scaling": false, "slide": "/api/v1/slides/327/", "stackOrder": 0, "style": "top: 127px; left: 0px; width: 445px; height: 37px; z-index: 0;", "thumb_html": "<i class=\"icon-font\"></i><h5>Heading</h5>", "wrapper": ""}, {"bgH": 913, "bgW": 437, "bgXPos": 0, "bgYPos": 0, "category": "Image", "css": {}, "description": "Brick Description", "html": "<div class=\"image-brick brick-content\" src=\"/static/img/placeholder.gif\" style=\"font-family: 'Open Sans'; background-image: url(dznly-files/ifKJV20DTO3atuPN4zH9_iphone-2.png); background-size: 260px 543px; width: 260px; height: 543px; background-position: 0px 0px; background-repeat: initial initial;\"></div>", "name": "Image", "position": {"bottom": 489, "height": 543, "left": 560, "right": 820, "top": -54, "width": 260}, "scaling": true, "slide": "/api/v1/slides/327/", "stackOrder": 0, "style": "top: -54px; left: 560px; width: 260px; height: 543px; z-index: 0;", "thumb_html": "<i class=\"icon-picture\"></i><h5>Image</h5>", "wrapper": ""}, {"bgH": 42, "bgW": 166, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<p style=\"display: inline-block; width: 383px; color: rgb(42, 61, 80); font-family: 'Open Sans'; background-size: 382px 42px; height: 30px; font-size: 19px; font-style: normal; font-weight: bold; background-position: 0px 0px;\" class=\"brick-content\">Morbi leo risus, porta ac consectetur</p>", "name": "Text", "position": {"bottom": 209, "height": 30, "left": 0, "right": 383, "top": 179, "width": 383}, "scaling": false, "slide": "/api/v1/slides/327/", "stackOrder": 1, "style": "top: 179px; left: 0px; width: 383px; height: 30px; z-index: 1;", "thumb_html": "<i class=\"icon-align-left\"></i><h5>Text</h5>", "wrapper": ""}], "fonts": "Open+Sans:400,400italic,700,700italic", "has_content": false, "height": "434", "id": 327, "is_live": false, "is_template": false, "name": "New Slide", "order_index": 2, "resource_uri": "/api/v1/slides/327/", "site": null, "slide_html": null, "slide_style": "background-color: rgb(236, 245, 248);", "slide_type": null, "stack": "/api/v1/stacks/142/", "style_sheet": "#section-327{margin:0;background-color: rgb(236, 245, 248);}#section-327 .slide-int{box-shadow:none;height:434px;}#section-327 .el0{top: 218px;left: 0px;width: 419px;height: 89px;z-index: 0;}#section-327 .el0 .brick-content{display: inline-block;width: 419px;color: rgb(64, 63, 64);font-family: 'Open Sans';background-size: 419px 92px;height: 89px;background-position: 0px 0px;}#section-327 .el1{top: 127px;left: 0px;width: 445px;height: 37px;z-index: 0;}#section-327 .el1 .brick-content{font-family: 'Open Sans';font-size: 35px;background-size: 445px 37px;height: 37px;width: 445px;font-weight: bold;color: rgb(40, 154, 182);background-position: 0px 0px;}#section-327 .el2{top: -54px;left: 560px;width: 260px;height: 543px;z-index: 0;}#section-327 .el2 .brick-content{font-family: 'Open Sans';background-image: url(dznly-files/ifKJV20DTO3atuPN4zH9_iphone-2.png);background-size: 260px 543px;width: 260px;height: 543px;background-position: 0px 0px;background-repeat: initial initial;}#section-327 .el3{top: 179px;left: 0px;width: 383px;height: 30px;z-index: 1;}#section-327 .el3 .brick-content{display: inline-block;width: 383px;color: rgb(42, 61, 80);font-family: 'Open Sans';background-size: 382px 42px;height: 30px;font-size: 19px;font-style: normal;font-weight: bold;background-position: 0px 0px;}", "template_index": null, "thumbnail": null, "timestamp": "2013-09-10T07:18:51.006066"}, {"bricks": [{"bgH": 111, "bgW": 470, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<span style=\"display: inline-block; width: 470px; color: rgb(64, 63, 64); font-family: 'Open Sans'; background-size: 470px 111px; height: 108px; background-position: 0px 0px;\" class=\"brick-content\">Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nulla vitae elit libero, a pharetra augue.<br></span>", "name": "Text", "position": {"bottom": 313, "height": 108, "left": 350, "right": 820, "top": 205, "width": 470}, "scaling": false, "slide": "/api/v1/slides/328/", "stackOrder": 0, "style": "top: 205px; left: 350px; width: 470px; height: 108px; z-index: 0;", "thumb_html": "<i class=\"icon-align-left\"></i><h5>Text</h5>", "wrapper": ""}, {"bgH": 37, "bgW": 379, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<h1 style=\"font-family: 'Open Sans'; font-size: 30px; background-size: 445px 37px; height: 37px; width: 445px; font-weight: bold; background-position: 0px 0px;\" class=\"brick-content\"><font color=\"#3490a2\">Design</font></h1>", "name": "Heading", "position": {"bottom": 157, "height": 37, "left": 350, "right": 795, "top": 120, "width": 445}, "scaling": false, "slide": "/api/v1/slides/328/", "stackOrder": 0, "style": "top: 120px; left: 350px; width: 445px; height: 37px; z-index: 0;", "thumb_html": "<i class=\"icon-font\"></i><h5>Heading</h5>", "wrapper": ""}, {"bgH": 913, "bgW": 437, "bgXPos": 0, "bgYPos": 0, "category": "Image", "css": {}, "description": "Brick Description", "html": "<div class=\"image-brick brick-content\" src=\"/static/img/placeholder.gif\" style=\"font-family: 'Open Sans'; background-image: url(dznly-files/YYn5ObXtQwWpix5r47I5_iphone-3.png); background-size: 260px 543px; width: 260px; height: 543px; background-position: 0px 0px; background-repeat: initial initial;\"></div>", "name": "Image", "position": {"bottom": 488, "height": 543, "left": 0, "right": 260, "top": -55, "width": 260}, "scaling": true, "slide": "/api/v1/slides/328/", "stackOrder": 0, "style": "top: -55px; left: 0px; width: 260px; height: 543px; z-index: 0;", "thumb_html": "<i class=\"icon-picture\"></i><h5>Image</h5>", "wrapper": ""}, {"bgH": 42, "bgW": 382, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<p style=\"display: inline-block; width: 413px; color: rgb(42, 61, 80); font-family: 'Open Sans'; background-size: 411px 42px; height: 30px; font-size: 19px; font-style: normal; font-weight: bold; background-position: 0px 0px;\" class=\"brick-content\">Nulla vitae elit libero pharetrum<br></p>", "name": "Text", "position": {"bottom": 197, "height": 30, "left": 350, "right": 763, "top": 167, "width": 413}, "scaling": false, "slide": "/api/v1/slides/328/", "stackOrder": 1, "style": "top: 167px; left: 350px; width: 413px; height: 30px; z-index: 1;", "thumb_html": "<i class=\"icon-align-left\"></i><h5>Text</h5>", "wrapper": ""}, {"category": "Image", "css": {}, "description": "Brick Description", "html": "<div class=\"image-brick brick-content\" src=\"/static/img/placeholder.gif\" style=\"font-family: 'Open Sans'; background-image: url(dznly-files/XuC5vZULQAeQPTwwU9m6_change-bg.png); background-size: 320px 50px; width: 320px; height: 50px; background-position: 0px 0px; background-repeat: initial initial;\"></div>", "name": "Image", "position": {"bottom": 91, "height": 50, "left": 500, "right": 820, "top": 41, "width": 320}, "scaling": true, "slide": "/api/v1/slides/328/", "stackOrder": 2, "style": "top: 41px; left: 500px; width: 320px; height: 50px; z-index: 2;", "thumb_html": "<i class=\"icon-picture\"></i><h5>Image</h5>", "wrapper": ""}], "fonts": "Open+Sans:400,400italic,700,700italic", "has_content": false, "height": "433", "id": 328, "is_live": false, "is_template": false, "name": "New Slide", "order_index": 3, "resource_uri": "/api/v1/slides/328/", "site": null, "slide_html": null, "slide_style": "background-color: rgb(255, 255, 255);", "slide_type": null, "stack": "/api/v1/stacks/142/", "style_sheet": "#section-328{margin:0;background-color: rgb(255, 255, 255);}#section-328 .slide-int{box-shadow:none;height:433px;}#section-328 .el0{top: 205px;left: 350px;width: 470px;height: 108px;z-index: 0;}#section-328 .el0 .brick-content{display: inline-block;width: 470px;color: rgb(64, 63, 64);font-family: 'Open Sans';background-size: 470px 111px;height: 108px;background-position: 0px 0px;}#section-328 .el1{top: 120px;left: 350px;width: 445px;height: 37px;z-index: 0;}#section-328 .el1 .brick-content{font-family: 'Open Sans';font-size: 30px;background-size: 445px 37px;height: 37px;width: 445px;font-weight: bold;background-position: 0px 0px;}#section-328 .el2{top: -55px;left: 0px;width: 260px;height: 543px;z-index: 0;}#section-328 .el2 .brick-content{font-family: 'Open Sans';background-image: url(dznly-files/YYn5ObXtQwWpix5r47I5_iphone-3.png);background-size: 260px 543px;width: 260px;height: 543px;background-position: 0px 0px;background-repeat: initial initial;}#section-328 .el3{top: 167px;left: 350px;width: 413px;height: 30px;z-index: 1;}#section-328 .el3 .brick-content{display: inline-block;width: 413px;color: rgb(42, 61, 80);font-family: 'Open Sans';background-size: 411px 42px;height: 30px;font-size: 19px;font-style: normal;font-weight: bold;background-position: 0px 0px;}#section-328 .el4{top: 41px;left: 500px;width: 320px;height: 50px;z-index: 2;}#section-328 .el4 .brick-content{font-family: 'Open Sans';background-image: url(dznly-files/XuC5vZULQAeQPTwwU9m6_change-bg.png);background-size: 320px 50px;width: 320px;height: 50px;background-position: 0px 0px;background-repeat: initial initial;}", "template_index": null, "thumbnail": null, "timestamp": "2013-09-10T07:18:51.020544"}, {"bricks": [{"bgH": 374, "bgW": 179, "bgXPos": 0, "bgYPos": 0, "category": "Image", "css": {}, "description": "Brick Description", "html": "<div class=\"image-brick brick-content\" src=\"/static/img/placeholder.gif\" style=\"font-family: 'Open Sans'; background-image: url(dznly-files/EQHZNRT5S4wzEaXeE6qw_iphone-4.png); background-size: 260px 543px; width: 260px; height: 543px; background-position: 0px 0px; background-repeat: initial initial;\"></div>", "name": "Image", "position": {"bottom": 489, "height": 543, "left": 560, "right": 820, "top": -54, "width": 260}, "scaling": true, "slide": "/api/v1/slides/329/", "stackOrder": 0, "style": "top: -54px; left: 560px; width: 260px; height: 543px; z-index: 0;", "thumb_html": "<i class=\"icon-picture\"></i><h5>Image</h5>", "wrapper": ""}, {"bgH": 37, "bgW": 379, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<h1 style=\"font-family: 'Open Sans'; font-size: 30px; background-size: 445px 37px; height: 37px; width: 445px; font-weight: bold; background-position: 0px 0px;\" class=\"brick-content\"><font color=\"#3490a2\">Freedom</font></h1>", "name": "Heading", "position": {"bottom": 167, "height": 37, "left": 0, "right": 445, "top": 130, "width": 445}, "scaling": false, "slide": "/api/v1/slides/329/", "stackOrder": 0, "style": "top: 130px; left: 0px; width: 445px; height: 37px; z-index: 0;", "thumb_html": "<i class=\"icon-font\"></i><h5>Heading</h5>", "wrapper": ""}, {"bgH": 89, "bgW": 400, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<span style=\"display: inline-block; width: 470px; color: rgb(64, 63, 64); font-family: 'Open Sans'; background-size: 470px 89px; height: 87px; background-position: 0px 0px;\" class=\"brick-content\">Morbi leo risus, porta ac consectetur ac, vestibulum a eros. Nulla vitae elit libero, a pharetra augue. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Integ posuere erat a ante venenatis dapibus posuere aliquet.<br></span>", "name": "Text", "position": {"bottom": 301, "height": 87, "left": 0, "right": 470, "top": 214, "width": 470}, "scaling": false, "slide": "/api/v1/slides/329/", "stackOrder": 0, "style": "top: 214px; left: 0px; width: 470px; height: 87px; z-index: 0;", "thumb_html": "<i class=\"icon-align-left\"></i><h5>Text</h5>", "wrapper": ""}, {"bgH": 42, "bgW": 166, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<p style=\"display: inline-block; width: 383px; color: rgb(42, 61, 80); font-family: 'Open Sans'; background-size: 382px 42px; height: 30px; font-size: 19px; font-style: normal; font-weight: bold; background-position: 0px 0px;\" class=\"brick-content\">Morbi leo risus, porta ac consectetur</p>", "name": "Text", "position": {"bottom": 207, "height": 30, "left": 0, "right": 383, "top": 177, "width": 383}, "scaling": false, "slide": "/api/v1/slides/329/", "stackOrder": 1, "style": "top: 177px; left: 0px; width: 383px; height: 30px; z-index: 1;", "thumb_html": "<i class=\"icon-align-left\"></i><h5>Text</h5>", "wrapper": ""}], "fonts": "Open+Sans:400,400italic,700,700italic", "has_content": false, "height": "434", "id": 329, "is_live": false, "is_template": false, "name": "New Slide", "order_index": 4, "resource_uri": "/api/v1/slides/329/", "site": null, "slide_html": null, "slide_style": "background-color: rgb(237, 247, 253);", "slide_type": null, "stack": "/api/v1/stacks/142/", "style_sheet": "#section-329{margin:0;background-color: rgb(237, 247, 253);}#section-329 .slide-int{box-shadow:none;height:434px;}#section-329 .el0{top: -54px;left: 560px;width: 260px;height: 543px;z-index: 0;}#section-329 .el0 .brick-content{font-family: 'Open Sans';background-image: url(dznly-files/EQHZNRT5S4wzEaXeE6qw_iphone-4.png);background-size: 260px 543px;width: 260px;height: 543px;background-position: 0px 0px;background-repeat: initial initial;}#section-329 .el1{top: 130px;left: 0px;width: 445px;height: 37px;z-index: 0;}#section-329 .el1 .brick-content{font-family: 'Open Sans';font-size: 30px;background-size: 445px 37px;height: 37px;width: 445px;font-weight: bold;background-position: 0px 0px;}#section-329 .el2{top: 214px;left: 0px;width: 470px;height: 87px;z-index: 0;}#section-329 .el2 .brick-content{display: inline-block;width: 470px;color: rgb(64, 63, 64);font-family: 'Open Sans';background-size: 470px 89px;height: 87px;background-position: 0px 0px;}#section-329 .el3{top: 177px;left: 0px;width: 383px;height: 30px;z-index: 1;}#section-329 .el3 .brick-content{display: inline-block;width: 383px;color: rgb(42, 61, 80);font-family: 'Open Sans';background-size: 382px 42px;height: 30px;font-size: 19px;font-style: normal;font-weight: bold;background-position: 0px 0px;}", "template_index": null, "thumbnail": null, "timestamp": "2013-09-10T07:18:51.038983"}, {"bricks": [{"bgH": 81, "bgW": 304, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<span style=\"display: inline-block; width: 400px; color: rgb(51, 51, 51); font-family: 'Open Sans'; background-size: 400px 81px; height: 79px; font-size: 24px; background-position: 0px 0px;\" class=\"brick-content\">Sign up to get our weekly newsletter and you'll always be in the know.<br></span>", "name": "Text", "position": {"bottom": 324, "height": 79, "left": 0, "right": 400, "top": 245, "width": 400}, "scaling": false, "slide": "/api/v1/slides/330/", "stackOrder": 0, "style": "top: 245px; left: 0px; width: 400px; height: 79px; z-index: 0;", "thumb_html": "<i class=\"icon-align-left\"></i><h5>Text</h5>", "wrapper": ""}, {"bgH": 149, "bgW": 400, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<h1 style=\"font-family: 'Open Sans'; font-size: 50px; background-size: 400px 79px; height: 79px; width: 400px; font-weight: bold; color: rgb(51, 51, 51); background-position: 0px 0px;\" class=\"brick-content\">Stay in the loop</h1>", "name": "Heading", "position": {"bottom": 251, "height": 79, "left": 0, "right": 400, "top": 172, "width": 400}, "scaling": false, "slide": "/api/v1/slides/330/", "stackOrder": 0, "style": "top: 172px; left: 0px; width: 400px; height: 79px; z-index: 0;", "thumb_html": "<i class=\"icon-font\"></i><h5>Heading</h5>", "wrapper": ""}, {"bgH": 40, "bgW": 95, "bgXPos": 0, "bgYPos": 0, "category": "Shapes", "css": {}, "description": "Brick Description", "html": "<div class=\"square-shape brick-content\" style=\"background-color: rgb(52, 144, 162); font-family: 'Open Sans'; background-size: 116px 40px; height: 40px; width: 120px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; background-position: 0px 0px;\"> </div>", "name": "Square", "position": {"bottom": 379, "height": 40, "left": 270, "right": 390, "top": 339, "width": 120}, "scaling": true, "slide": "/api/v1/slides/330/", "stackOrder": 1, "style": "top: 339px; left: 270px; width: 120px; height: 40px; z-index: 1;", "thumb_html": "<i class=\"icon-stop\"></i><h5>Square</h5>", "wrapper": "<a href=\"http://#\"></a>"}, {"bgH": 36, "bgW": 72, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<span style=\"display: inline-block; width: 88px; color: rgb(255, 255, 255); font-family: 'Open Sans'; font-size: 19px; background-size: 88px 36px; height: 26px; background-position: 0px 0px;\" class=\"brick-content\">Submit</span>", "name": "Text", "position": {"bottom": 372, "height": 26, "left": 286, "right": 374, "top": 346, "width": 88}, "scaling": false, "slide": "/api/v1/slides/330/", "stackOrder": 2, "style": "top: 346px; left: 286px; width: 88px; height: 26px; z-index: 2; text-align: center;", "thumb_html": "<i class=\"icon-align-left\"></i><h5>Text</h5>", "wrapper": "<a href=\"http://#\"></a>"}, {"bgH": 40, "bgW": 309, "bgXPos": 0, "bgYPos": 0, "category": "Embed", "css": {}, "description": "Brick Description", "html": "<div class=\"embed-brick brick-content\" style=\"font-family: 'Open Sans'; background-size: 260px 40px; height: 40px; width: 260px; background-position: 0px 0px;\"><input type=\"text\" style=\"height: 40px; width: 260px; border-radius: 0;\"></div>", "name": "Embed", "position": {"bottom": 379, "height": 40, "left": 0, "right": 260, "top": 339, "width": 260}, "scaling": false, "slide": "/api/v1/slides/330/", "stackOrder": 0, "style": "top: 339px; left: 0px; width: 260px; height: 40px; z-index: 0;", "thumb_html": "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"20px\" height=\"20px\" viewbox=\"0 0 48 48\" enable-background=\"new 0 0 16 16\" xml:space=\"preserve\" fill=\"#000000\" class=\"svg replaced-svg\"> <path d=\"M 39.00,48.00L9.00,48.00 c-4.971,0.00-9.00-4.032-9.00-9.00L0.00,9.00 c0.00-4.971, 4.029-9.00, 9.00-9.00l30.00,0.00 c 4.968,0.00, 9.00,4.029, 9.00,9.00l0.00,30.00 C 48.00,43.968, 43.968,48.00, 39.00,48.00z M 42.00,9.00c0.00-1.656-1.341-3.00-3.00-3.00L9.00,6.00 C 7.344,6.00, 6.00,7.344, 6.00,9.00l0.00,30.00 c0.00,1.659, 1.344,3.00, 3.00,3.00l30.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L42.00,9.00 z M 36.00,27.00l0.00,3.00 c0.00,4.968-4.032,9.00-9.00,9.00l0.00,-6.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L30.00,27.00 c 1.659,0.00, 3.00-1.344, 3.00-3.00s-1.341-3.00-3.00-3.00L30.00,18.00 c0.00-1.656-1.341-3.00-3.00-3.00L27.00,9.00 c 4.968,0.00, 9.00,4.029, 9.00,9.00l0.00,3.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00S 37.659,27.00, 36.00,27.00z M 12.00,30.00L12.00,27.00 C 10.344,27.00, 9.00,25.656, 9.00,24.00s 1.344-3.00, 3.00-3.00L12.00,18.00 c0.00-4.971, 4.029-9.00, 9.00-9.00l0.00,6.00 C 19.344,15.00, 18.00,16.344, 18.00,18.00l0.00,3.00 C 16.344,21.00, 15.00,22.344, 15.00,24.00s 1.344,3.00, 3.00,3.00l0.00,3.00 c0.00,1.659, 1.344,3.00, 3.00,3.00l0.00,6.00 C 16.029,39.00, 12.00,34.968, 12.00,30.00z\"></path></svg><h5>Embed</h5>", "wrapper": ""}], "fonts": "Open+Sans:400,400italic,700,700italic", "has_content": false, "height": "588", "id": 330, "is_live": false, "is_template": false, "name": "New Slide", "order_index": 5, "resource_uri": "/api/v1/slides/330/", "site": null, "slide_html": null, "slide_style": "background-image: url(dznly-files/XD8Ar0qzRUafji8mZWTU_01-flipped.jpg);", "slide_type": null, "stack": "/api/v1/stacks/142/", "style_sheet": "#section-330{margin:0;background-image: url(dznly-files/XD8Ar0qzRUafji8mZWTU_01-flipped.jpg);}#section-330 .slide-int{box-shadow:none;height:588px;}#section-330 .el0{top: 245px;left: 0px;width: 400px;height: 79px;z-index: 0;}#section-330 .el0 .brick-content{display: inline-block;width: 400px;color: rgb(51, 51, 51);font-family: 'Open Sans';background-size: 400px 81px;height: 79px;font-size: 24px;background-position: 0px 0px;}#section-330 .el1{top: 172px;left: 0px;width: 400px;height: 79px;z-index: 0;}#section-330 .el1 .brick-content{font-family: 'Open Sans';font-size: 50px;background-size: 400px 79px;height: 79px;width: 400px;font-weight: bold;color: rgb(51, 51, 51);background-position: 0px 0px;}#section-330 .el2{top: 339px;left: 270px;width: 120px;height: 40px;z-index: 1;}#section-330 .el2 .brick-content{background-color: rgb(52, 144, 162);font-family: 'Open Sans';background-size: 116px 40px;height: 40px;width: 120px;border-top-left-radius: 5px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;background-position: 0px 0px;}#section-330 .el3{top: 346px;left: 286px;width: 88px;height: 26px;z-index: 2;text-align: center;}#section-330 .el3 .brick-content{display: inline-block;width: 88px;color: rgb(255, 255, 255);font-family: 'Open Sans';font-size: 19px;background-size: 88px 36px;height: 26px;background-position: 0px 0px;}#section-330 .el4{top: 339px;left: 0px;width: 260px;height: 40px;z-index: 0;}#section-330 .el4 .brick-content{font-family: 'Open Sans';background-size: 260px 40px;height: 40px;width: 260px;background-position: 0px 0px;}", "template_index": null, "thumbnail": null, "timestamp": "2013-09-10T07:18:51.059196"}, {"bricks": [{"bgH": 53, "bgW": 208, "bgXPos": 0, "bgYPos": 0, "category": "Shapes", "css": {}, "description": "Brick Description", "html": "<div class=\"square-shape brick-content\" style=\"background-color: rgb(255, 255, 255); font-family: 'Open Sans'; background-size: 152px 53px; height: 53px; width: 152px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; background-position: 0px 0px;\"> </div>", "name": "Square", "position": {"bottom": 324, "height": 53, "left": 334, "right": 486, "top": 271, "width": 152}, "scaling": true, "slide": "/api/v1/slides/331/", "stackOrder": 0, "style": "top: 271px; left: 334px; width: 152px; height: 53px; z-index: 0;", "thumb_html": "<i class=\"icon-stop\"></i><h5>Square</h5>", "wrapper": "<a href=\"http://#\"></a>"}, {"bgH": 64, "bgW": 304, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<h1 style=\"font-family: 'Open Sans'; font-size: 45px; background-size: 363px 64px; height: 64px; width: 363px; font-weight: bold; color: rgb(255, 255, 255); background-position: 0px 0px;\" class=\"brick-content\">Are you ready?</h1>", "name": "Heading", "position": {"bottom": 135, "height": 64, "left": 228, "right": 591, "top": 71, "width": 363}, "scaling": false, "slide": "/api/v1/slides/331/", "stackOrder": 1, "style": "top: 71px; left: 228px; width: 363px; height: 64px; z-index: 1; text-align: center;", "thumb_html": "<i class=\"icon-font\"></i><h5>Heading</h5>", "wrapper": ""}, {"bgH": 79, "bgW": 437, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<span style=\"display: inline-block; width: 437px; color: rgb(215, 237, 244); font-family: 'Open Sans'; background-size: 437px 110px; height: 108px; font-size: 34px; background-position: 0px 0px;\" class=\"brick-content\">You can get started right now. Seriously. Now.<br></span>", "name": "Text", "position": {"bottom": 250, "height": 108, "left": 191, "right": 628, "top": 142, "width": 437}, "scaling": false, "slide": "/api/v1/slides/331/", "stackOrder": 2, "style": "top: 142px; left: 191px; width: 437px; height: 108px; z-index: 2; text-align: center;", "thumb_html": "<i class=\"icon-align-left\"></i><h5>Text</h5>", "wrapper": ""}, {"bgH": 45, "bgW": 186, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<span style=\"display: inline-block; width: 136px; color: rgb(64, 63, 64); font-family: 'Open Sans'; background-size: 136px 45px; height: 45px; font-size: 29px; background-position: 0px 0px;\" class=\"brick-content\">Dive in<br></span>", "name": "Text", "position": {"bottom": 320, "height": 45, "left": 341, "right": 477, "top": 275, "width": 136}, "scaling": false, "slide": "/api/v1/slides/331/", "stackOrder": 3, "style": "top: 275px; left: 341px; width: 136px; height: 45px; z-index: 3; text-align: center;", "thumb_html": "<i class=\"icon-align-left\"></i><h5>Text</h5>", "wrapper": "<a href=\"http://#\"></a>"}], "fonts": "Open+Sans:400,400italic,700,700italic", "has_content": false, "height": "395", "id": 331, "is_live": false, "is_template": false, "name": "New Slide", "order_index": 6, "resource_uri": "/api/v1/slides/331/", "site": null, "slide_html": null, "slide_style": "background-color: rgb(52, 144, 162);", "slide_type": null, "stack": "/api/v1/stacks/142/", "style_sheet": "#section-331{margin:0;background-color: rgb(52, 144, 162);}#section-331 .slide-int{box-shadow:none;height:395px;}#section-331 .el0{top: 271px;left: 334px;width: 152px;height: 53px;z-index: 0;}#section-331 .el0 .brick-content{background-color: rgb(255, 255, 255);font-family: 'Open Sans';background-size: 152px 53px;height: 53px;width: 152px;border-top-left-radius: 5px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;background-position: 0px 0px;}#section-331 .el1{top: 71px;left: 228px;width: 363px;height: 64px;z-index: 1;text-align: center;}#section-331 .el1 .brick-content{font-family: 'Open Sans';font-size: 45px;background-size: 363px 64px;height: 64px;width: 363px;font-weight: bold;color: rgb(255, 255, 255);background-position: 0px 0px;}#section-331 .el2{top: 142px;left: 191px;width: 437px;height: 108px;z-index: 2;text-align: center;}#section-331 .el2 .brick-content{display: inline-block;width: 437px;color: rgb(215, 237, 244);font-family: 'Open Sans';background-size: 437px 110px;height: 108px;font-size: 34px;background-position: 0px 0px;}#section-331 .el3{top: 275px;left: 341px;width: 136px;height: 45px;z-index: 3;text-align: center;}#section-331 .el3 .brick-content{display: inline-block;width: 136px;color: rgb(64, 63, 64);font-family: 'Open Sans';background-size: 136px 45px;height: 45px;font-size: 29px;background-position: 0px 0px;}", "template_index": null, "thumbnail": null, "timestamp": "2013-09-10T07:18:51.075073"}, {"bricks": [{"bgH": 385, "bgW": 643, "bgXPos": 0, "bgYPos": 0, "category": "Text", "css": {}, "description": "Brick Description", "html": "<span style=\"display: inline-block; width: 282px; color: rgb(255, 255, 255); font-size: 14px; font-family: Lato; background-size: 282px 385px; height: 46px; background-position: 0px 0px;\" class=\"brick-content\">© 2013&nbsp;Designly.com<br>Follow the <a href=\"http://#\"><font color=\"#3490a2\">RSS feed here</font></a>, if you're into that.<br></span>", "name": "Text", "position": {"bottom": 75, "height": 46, "left": 0, "right": 282, "top": 29, "width": 282}, "scaling": false, "slide": "/api/v1/slides/332/", "stackOrder": 0, "style": "top: 29px; left: 0px; width: 282px; height: 46px; z-index: 0;", "thumb_html": "<i class=\"icon-align-left\"></i><h5>Text</h5>", "wrapper": ""}, {"category": "Image", "css": {}, "description": "Brick Description", "html": "<div class=\"image-brick brick-content\" src=\"/static/img/placeholder.gif\" style=\"font-family: 'Open Sans'; background-image: url(dznly-files/WxipoUoRne6nZgJXnzoG_social-twitter-circular.png); background-size: 48px; width: 48px; height: 48px; background-position: 0px 0px; background-repeat: initial initial;\"></div>", "name": "Image", "position": {"bottom": 75, "height": 48, "left": 772, "right": 820, "top": 27, "width": 48}, "scaling": true, "slide": "/api/v1/slides/332/", "stackOrder": 0, "style": "top: 27px; left: 772px; width: 48px; height: 48px; z-index: 0;", "thumb_html": "<i class=\"icon-picture\"></i><h5>Image</h5>", "wrapper": "<a href=\"https://twitter.com/dznly\"></a>"}, {"category": "Image", "css": {}, "description": "Brick Description", "html": "<div class=\"image-brick brick-content\" src=\"/static/img/placeholder.gif\" style=\"font-family: 'Open Sans'; background-image: url(dznly-files/WRjonaRT1uQ6nc10Zmkr_social-facebook-circular.png); background-size: 48px; width: 48px; height: 48px; background-position: 0px 0px; background-repeat: initial initial;\"></div>", "name": "Image", "position": {"bottom": 75, "height": 48, "left": 724, "right": 772, "top": 27, "width": 48}, "scaling": true, "slide": "/api/v1/slides/332/", "stackOrder": 0, "style": "top: 27px; left: 724px; width: 48px; height: 48px; z-index: 0;", "thumb_html": "<i class=\"icon-picture\"></i><h5>Image</h5>", "wrapper": "<a href=\"https://www.facebook.com/Dznly\"></a>"}], "fonts": "Lato:400,700,400italic,700italic|Open+Sans:400,400italic,700,700italic", "has_content": false, "height": "103", "id": 332, "is_live": false, "is_template": false, "name": "New Slide", "order_index": 7, "resource_uri": "/api/v1/slides/332/", "site": null, "slide_html": null, "slide_style": "background-color: rgb(51, 51, 51);", "slide_type": null, "stack": "/api/v1/stacks/142/", "style_sheet": "#section-332{margin:0;background-color: rgb(51, 51, 51);}#section-332 .slide-int{box-shadow:none;height:103px;}#section-332 .el0{top: 29px;left: 0px;width: 282px;height: 46px;z-index: 0;}#section-332 .el0 .brick-content{display: inline-block;width: 282px;color: rgb(255, 255, 255);font-size: 14px;font-family: Lato;background-size: 282px 385px;height: 46px;background-position: 0px 0px;}#section-332 .el1{top: 27px;left: 772px;width: 48px;height: 48px;z-index: 0;}#section-332 .el1 .brick-content{font-family: 'Open Sans';background-image: url(dznly-files/WxipoUoRne6nZgJXnzoG_social-twitter-circular.png);background-size: 48px;width: 48px;height: 48px;background-position: 0px 0px;background-repeat: initial initial;}#section-332 .el2{top: 27px;left: 724px;width: 48px;height: 48px;z-index: 0;}#section-332 .el2 .brick-content{font-family: 'Open Sans';background-image: url(dznly-files/WRjonaRT1uQ6nc10Zmkr_social-facebook-circular.png);background-size: 48px;width: 48px;height: 48px;background-position: 0px 0px;background-repeat: initial initial;}", "template_index": null, "thumbnail": null, "timestamp": "2013-09-10T07:18:51.095544"}], "slug": "homepage"};
+      
+      var config = {
+        STATIC_URL: 'http://static.designly.com/v1.55/',
+        UPLOADS_URL: '//uploads.designly.com/',
+        DEMO:  true 
+      };
+      
+      var is_staff = true;
+      var is_authenticated = true;
+      var is_owner = false;
+      var first_time = true;
+      
+      
+      var editor_autosave_wait = 30000;
+      
+      
+      
+      var page_live_url = '#';
+      
+      //- Please keep these fonts up to date if you feel like adding any more
+      var fonts = {
+        'Open Sans': 'Open+Sans:400,400italic,700,700italic',
+        'Source Sans Pro': 'Source+Sans+Pro:400,700,400italic,700italic',
+        'Lato': 'Lato:400,700,400italic,700italic',
+        'PT Sans': 'PT+Sans:400,700,400italic,700italic',
+        'Ubuntu': 'Ubuntu:400,700,400italic,700italic',
+        'Exo': 'Exo:400,700,400italic,700italic',
+        'Amaranth': 'Amaranth:400,400italic,700,700italic',
+        'Helvetica': '',
+        'Arvo': 'Arvo:400,700,400italic,700italic',
+        'Averia Serif Libre': 'Averia+Serif+Libre:400,700,400italic,700italic',
+        'Source Code Pro': 'Source+Code+Pro:400,700',
+        'Merriweather': 'Merriweather:400,400italic,700italic,700',
+        'Alegreya': 'Alegreya:400italic,700italic,400,700',
+        'Vollkorn': 'Vollkorn:400italic,700italic,400,700',
+        'Times New Roman': '',
+        'Playfair Display': 'Playfair+Display:400,700,400italic,700italic',
+        'Lobster Two': 'Lobster+Two:400,400italic,700,700italic',
+        'Oswald': 'Oswald:400,700',
+        'Montserrat' : 'Montserrat:400,700',
+        'Noto Sans' : 'Noto+Sans:400italic,700italic,400,700',
+        'Noto Serif' : 'Noto+Serif:400italic,700italic,400,700',
+        'Raleway' : 'Raleway:400,700',
+        'Josefin Sans' : 'Josefin+Sans:400,700,400italic,700italic',
+        'Roboto' : 'Roboto:400,400italic,700italic,700',
+        'PT Serif' : 'PT+Serif:400,700,400italic,700italic',
+        'Cabin' : 'Cabin:400,700,400italic,700italic',
+        'Droid Serif' : 'Droid+Serif:400,700,400italic,700italic',
+        'Josefin Slab' : 'Josefin+Slab:400,700,400italic,700italic',
+        'Lora' : 'Lora:400,700,400italic,700italic',
+        'Pacifico' : 'Pacifico',
+        'Ubuntu Mono' : 'Ubuntu+Mono:400,700,400italic,700italic',
+        'Ubuntu' : 'Ubuntu:400,700,400italic,700italic'
+      };
+    </script>
+  </head>
+  <body>
+    <div id="injection_site"></div>
+    <div class="top-controls-container">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <div class="controls">
+              <button id="preview" title="Preview Page"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#ffffff" class="svg replaced-svg"> <path d="M 24.00,45.00c-16.218,0.00-24.00-21.00-24.00-21.00s 7.782-21.00, 24.00-21.00s 24.00,21.00, 24.00,21.00S 40.218,45.00, 24.00,45.00z M 24.00,9.00 C 15.714,9.00, 9.00,15.714, 9.00,24.00s 6.714,15.00, 15.00,15.00s 15.00-6.714, 15.00-15.00S 32.286,9.00, 24.00,9.00z M 24.00,33.00c-4.971,0.00-9.00-4.029-9.00-9.00c0.00-1.059, 0.216-2.058, 0.552-3.00L21.00,21.00 L21.00,15.552 C 21.942,15.216, 22.941,15.00, 24.00,15.00c 4.971,0.00, 9.00,4.029, 9.00,9.00S 28.971,33.00, 24.00,33.00z"></path></svg>
+              </button>
+              <button id="grid-toggle" title="Grid"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M0,39V9c0-4.971,4.029-9,9-9h30c4.971,0,9,4.029,9,9v30c0,4.971-4.029,9-9,9H9C4.029,48,0,43.971,0,39z M39,42 c1.656,0,3-1.341,3-3V9c0-1.659-1.344-3-3-3H9C7.341,6,6,7.341,6,9v30c0,1.659,1.341,3,3,3H39z M18,12v24h-6V12H18z M27,12v24h-6V12 H27z M36,12v24h-6V12H36z"></path></svg>
+              </button>
+              <div class="control-divider-vertical"></div>
+              <button id="undo" title="Undo"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 43.953,42.00c-2.472-6.987-9.12-12.00-16.953-12.00l0.00,6.00 c0.00,1.107-0.609,2.121-1.584,2.646 c-0.975,0.522-2.16,0.465-3.078-0.15l-18.00-12.00C 3.501,25.938, 3.00,25.002, 3.00,24.00s 0.501-1.938, 1.335-2.496l 18.00-12.00c 0.921-0.612, 2.103-0.672, 3.078-0.15 S 27.00,10.893, 27.00,12.00l0.00,6.00 c 9.939,0.00, 18.00,8.061, 18.00,18.00C 45.00,38.106, 44.619,40.122, 43.953,42.00z"></path></svg>
+              </button>
+              <button id="redo" title="Redo"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 48 48" xml:space="preserve" class="svg replaced-svg">
+<path d="M3,36c0-9.939,8.061-18,18-18v-6c0-1.107,0.611-2.124,1.587-2.646c0.975-0.522,2.157-0.462,3.078,0.15l18,12
+  C44.499,22.062,45,22.998,45,24s-0.501,1.938-1.338,2.496l-18,12c-0.918,0.615-2.103,0.672-3.078,0.15
+  C21.609,38.121,21,37.107,21,36v-6c-7.833,0-14.48,5.014-16.953,12C3.381,40.122,3,38.105,3,36z"></path>
+</svg>
+              </button>
+              <div class="btn-group clipboard-controls">
+                <button data-toggle="dropdown" title="Edit controls" data-placement="right" class="dropdown-toggle"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 42.00,48.00L6.00,48.00 c-1.659,0.00-3.00-1.341-3.00-3.00L3.00,6.00 c0.00-1.656, 1.341-3.00, 3.00-3.00l6.00,0.00 l0.00,6.00 L9.00,9.00 l0.00,33.00 l30.00,0.00 L39.00,9.00 l-3.00,0.00 L36.00,3.00 l6.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00l0.00,39.00 C 45.00,46.659, 43.659,48.00, 42.00,48.00z M 12.00,12.00l3.00,0.00 c0.00,1.656, 1.341,3.00, 3.00,3.00l12.00,0.00 c 1.659,0.00, 3.00-1.344, 3.00-3.00l3.00,0.00 l0.00,27.00 L12.00,39.00 L12.00,12.00 z M 30.00,12.00L18.00,12.00 C 16.341,12.00, 15.00,10.656, 15.00,9.00L15.00,3.00 l0.00,0.00l6.00,0.00 L21.00,0.00 l6.00,0.00 l0.00,3.00 l6.00,0.00 l0.00,0.00l0.00,6.00 C 33.00,10.656, 31.659,12.00, 30.00,12.00z M 27.00,6.00L21.00,6.00 l0.00,3.00 l6.00,0.00 L27.00,6.00 z"></path></svg>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a id="up-layer" href="javascript:void(0)" title="Move to Front"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 9.00,39.00 L 15.00,30.00 L 33.00,30.00 L 39.00,39.00 ZM 18.00,12.00 C 16.788,12.00 15.69,11.268 15.228,10.149 C 15.114,9.867 15.042,9.576 15.015,9.285 C 14.931,8.406 15.234,7.521 15.879,6.876 L 21.879,0.876 C 22.464,0.291 23.232-0.003 24.00-0.003 C 24.768-0.003 25.536,0.291 26.121,0.876 L 32.121,6.876 C 32.763,7.521 33.066,8.409 32.985,9.285 C 32.958,9.576 32.889,9.867 32.772,10.149 C 32.31,11.268 31.212,12.00 30.00,12.00 L 27.00,12.00 L 27.00,21.00 C 27.00,22.659 25.659,24.00 24.00,24.00 C 22.344,24.00 21.00,22.659 21.00,21.00 L 21.00,12.00 L 18.00,12.00 ZM 39.00,0.00 C 43.971,0.00 48.00,4.029 48.00,9.00 L 48.00,39.00 C 48.00,43.971 43.971,48.00 39.00,48.00 L 9.00,48.00 C 4.029,48.00 0.00,43.971 0.00,39.00 L 0.00,9.00 C 0.00,4.029 4.029,0.00 9.00,0.00 L 14.271,0.00 L 11.634,2.634 C 10.662,3.606 9.948,4.758 9.51,6.00 L 9.00,6.00 C 7.344,6.00 6.00,7.344 6.00,9.00 L 6.00,39.00 C 6.00,40.659 7.344,42.00 9.00,42.00 L 39.00,42.00 C 40.659,42.00 42.00,40.659 42.00,39.00 L 42.00,9.00 C 42.00,7.344 40.659,6.00 39.00,6.00 L 38.487,6.00 C 38.049,4.761 37.335,3.609 36.363,2.634 L 33.729,0.00 L 39.00,0.00 Z"></path></svg>Move to Front</a></li>
+                  <li><a id="down-layer" href="javascript:void(0)" title="Move to Back"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,0.00 C 43.971,0.00 48.00,4.029 48.00,9.00 L 48.00,39.00 C 48.00,43.971 43.971,48.00 39.00,48.00 L 9.00,48.00 C 4.029,48.00 0.00,43.971 0.00,39.00 L 0.00,9.00 C 0.00,4.029 4.029,0.00 9.00,0.00 L 15.00,0.00 L 15.00,6.00 L 9.00,6.00 C 7.344,6.00 6.00,7.344 6.00,9.00 L 6.00,39.00 C 6.00,40.659 7.344,42.00 9.00,42.00 L 39.00,42.00 C 40.659,42.00 42.00,40.659 42.00,39.00 L 42.00,9.00 C 42.00,7.344 40.659,6.00 39.00,6.00 L 33.00,6.00 L 33.00,0.00 L 39.00,0.00 ZM 15.00,30.00 L 33.00,30.00 L 39.00,39.00 L 9.00,39.00 ZM 21.879,23.121 L 15.879,17.121 C 15.021,16.263 14.766,14.973 15.228,13.851 C 15.69,12.732 16.788,12.00 18.00,12.00 L 21.00,12.00 L 21.00,3.00 C 21.00,1.341 22.344,0.00 24.00,0.00 C 25.659,0.00 27.00,1.341 27.00,3.00 L 27.00,12.00 L 30.00,12.00 C 31.212,12.00 32.31,12.732 32.772,13.851 C 33.234,14.973 32.976,16.263 32.121,17.121 L 26.121,23.121 C 25.536,23.706 24.768,24.00 24.00,24.00 C 23.232,24.00 22.464,23.706 21.879,23.121 Z"></path></svg>Move to Back</a></li>
+                  <li class="divider"></li>
+                  <li><a id="cut-selected" href="#" title="Cut"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"><path d="M-201.519,15.309l18.312-18.312c0.777-0.778,0.777-2.05,0-2.828l-1.414-1.415
+  c-0.777-0.778-2.051-0.778-2.828,0l-18.312,18.312l-18.312-18.313c-0.778-0.778-2.05-0.778-2.828,0l-1.415,1.414
+  c-0.778,0.778-0.778,2.05,0,2.828l18.312,18.313l-18.312,18.312c-0.778,0.777-0.778,2.051,0,2.828l1.414,1.414
+  c0.778,0.777,2.05,0.777,2.828,0l18.312-18.312l18.312,18.312c0.777,0.777,2.051,0.777,2.828,0l1.414-1.414
+  c0.777-0.777,0.777-2.051,0-2.828L-201.519,15.309z"/>
+<path d="M-185.477,88.656l-1.765-0.941c-0.919-0.49-2.055-0.176-2.612,0.684l-0.008-0.006l-0.197,0.291l0.011,0.01
+  c-0.029,0.033-0.06,0.064-0.088,0.107c-3.204,4.824-8.678,8.014-14.889,8.014c-9.856,0-17.875-8.02-17.875-17.875
+  c0-9.857,8.019-17.875,17.875-17.875c6.211,0,11.685,3.189,14.889,8.014c0.028,0.043,0.059,0.074,0.088,0.107l-0.011,0.01
+  l0.197,0.291l0.008-0.008c0.558,0.861,1.693,1.176,2.612,0.686l1.765-0.941c0.953-0.508,1.322-1.689,0.847-2.65
+  c-0.009-0.02-0.013-0.037-0.022-0.057l-0.008,0.006c-4.199-6.861-11.749-11.457-20.364-11.457
+  c-13.165,0-23.875,10.711-23.875,23.875s10.71,23.875,23.875,23.875c8.615,0,16.165-4.598,20.364-11.457l0.008,0.004
+  c0.01-0.018,0.014-0.037,0.022-0.055C-184.154,90.346-184.523,89.164-185.477,88.656z"/>
+<path d="M-23.216-43.803l-1.536-0.821c-0.862-0.459-1.96-0.368-2.729,0.174l-0.135-0.12l-0.779,1.155
+  c-0.004,0.009-0.011,0.016-0.017,0.025c-2.741,4.127-7.318,6.591-12.244,6.591c-8.106,0-14.701-6.595-14.701-14.701
+  s6.595-14.702,14.701-14.702c4.79,0,9.249,2.331,12.012,6.252l1.037,1.514l0.127-0.113c0.77,0.542,1.865,0.631,2.728,0.172
+  l1.536-0.819c1.231-0.657,1.729-2.211,1.141-3.391l-0.506-0.967l-0.063,0.04c-4.046-6.063-10.714-9.657-18.011-9.657
+  c-11.949,0-21.67,9.721-21.67,21.671c0,11.951,9.722,21.671,21.67,21.671c7.318,0,14.008-3.615,18.049-9.713l0.062,0.032l0.438-0.83
+  C-21.487-41.593-21.984-43.146-23.216-43.803z"/>
+<path d="M-188.033,115.071l-1.822-0.82c-1.004-0.451-2.197-0.002-2.653,1l-17.696,38.855l-17.656-38.855
+  c-0.455-1.002-1.647-1.451-2.651-1l-1.822,0.82c-1.004,0.451-1.452,1.641-0.997,2.642l19.088,42.005
+  c0.188,0.689,0.863,1.252,1.752,1.486h0.05c0.284,0.076,0.587,0.125,0.906,0.125h2.703c0.319,0,0.622-0.049,0.906-0.125h-0.015
+  c0.714-0.189,1.296-0.584,1.592-1.094l0.019-0.039c0.126-0.23,0.2-0.48,0.2-0.742c0,0.262-0.073,0.512-0.198,0.742l19.291-42.359
+  C-186.582,116.711-187.029,115.522-188.033,115.071z"/>
+<path d="M44.29,39.346L28.934,23.987L44.29,8.632c1.021-1.02,1.021-2.68,0-3.701l-1.233-1.234
+  c-0.985-0.985-2.716-0.985-3.7,0L24,19.054L8.644,3.697c-0.986-0.986-2.714-0.986-3.701,0L3.71,4.931c-1.021,1.02-1.021,2.68,0,3.7
+  l15.356,15.357L3.71,39.345c-0.493,0.493-0.764,1.149-0.764,1.851c0,0.7,0.271,1.357,0.764,1.85l1.233,1.233
+  c0.986,0.985,2.714,0.985,3.701,0L24,28.922l15.356,15.356c0.492,0.492,1.149,0.764,1.851,0.764c0.7,0,1.357-0.271,1.85-0.764
+  l1.233-1.233C45.311,42.024,45.311,40.364,44.29,39.346z"/>
+<path d="M-60.096-43.648c-0.251-0.666-0.746-1.192-1.393-1.483l-1.617-0.729c-0.345-0.154-0.712-0.233-1.089-0.233
+  c-1.046,0-2.002,0.612-2.436,1.563l-14.887,32.687L-96.372-44.53c-0.431-0.949-1.387-1.563-2.434-1.563
+  c-0.378,0-0.744,0.079-1.09,0.233l-1.615,0.729c-0.646,0.291-1.143,0.817-1.393,1.485c-0.252,0.666-0.229,1.387,0.064,2.034
+  l16.904,37.199c0.275,0.887,1.078,1.58,2.161,1.865c0.034,0.011,0.08,0.017,0.126,0.022c0.32,0.078,0.639,0.118,0.948,0.118h2.398
+  c0.336,0,0.686-0.047,1.034-0.141c0.028-0.009,0.056-0.018,0.085-0.028c0.818-0.239,1.488-0.729,1.852-1.354
+  c0.005-0.009,0.013-0.025,0.023-0.044c0.002-0.005,0.003-0.009,0.007-0.014c0.049-0.091,0.094-0.186,0.13-0.282l17.008-37.343
+  C-59.869-42.259-59.845-42.982-60.096-43.648z"/>
+</svg>Cut</a></li>
+                  <li><a id="copy-selected" href="#" title="Copy"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"><path d="M-201.519,15.309l18.312-18.312c0.777-0.778,0.777-2.05,0-2.828l-1.414-1.415
+  c-0.777-0.778-2.051-0.778-2.828,0l-18.312,18.312l-18.312-18.313c-0.778-0.778-2.05-0.778-2.828,0l-1.415,1.414
+  c-0.778,0.778-0.778,2.05,0,2.828l18.312,18.313l-18.312,18.312c-0.778,0.777-0.778,2.051,0,2.828l1.414,1.414
+  c0.778,0.777,2.05,0.777,2.828,0l18.312-18.312l18.312,18.312c0.777,0.777,2.051,0.777,2.828,0l1.414-1.414
+  c0.777-0.777,0.777-2.051,0-2.828L-201.519,15.309z"/>
+<path d="M-185.477,88.656l-1.765-0.941c-0.919-0.49-2.055-0.176-2.612,0.684l-0.008-0.006l-0.197,0.291l0.011,0.01
+  c-0.029,0.033-0.06,0.064-0.088,0.107c-3.204,4.824-8.678,8.014-14.889,8.014c-9.856,0-17.875-8.02-17.875-17.875
+  c0-9.857,8.019-17.875,17.875-17.875c6.211,0,11.685,3.189,14.889,8.014c0.028,0.043,0.059,0.074,0.088,0.107l-0.011,0.01
+  l0.197,0.291l0.008-0.008c0.558,0.861,1.693,1.176,2.612,0.686l1.765-0.941c0.953-0.508,1.322-1.689,0.847-2.65
+  c-0.009-0.02-0.013-0.037-0.022-0.057l-0.008,0.006c-4.199-6.861-11.749-11.457-20.364-11.457
+  c-13.165,0-23.875,10.711-23.875,23.875s10.71,23.875,23.875,23.875c8.615,0,16.165-4.598,20.364-11.457l0.008,0.004
+  c0.01-0.018,0.014-0.037,0.022-0.055C-184.154,90.346-184.523,89.164-185.477,88.656z"/>
+<path d="M42.861,31.697l-1.536-0.821c-0.862-0.459-1.96-0.368-2.729,0.174l-0.135-0.12l-0.779,1.155
+  c-0.004,0.009-0.011,0.016-0.017,0.025c-2.741,4.127-7.318,6.591-12.244,6.591c-8.106,0-14.701-6.595-14.701-14.701
+  S17.316,9.298,25.422,9.298c4.79,0,9.249,2.331,12.012,6.252l1.037,1.514l0.127-0.113c0.77,0.542,1.865,0.631,2.728,0.172
+  l1.536-0.819c1.231-0.657,1.729-2.211,1.141-3.391l-0.506-0.967l-0.063,0.04c-4.046-6.063-10.714-9.657-18.011-9.657
+  C13.473,2.329,3.751,12.05,3.751,24c0,11.951,9.722,21.671,21.67,21.671c7.318,0,14.008-3.615,18.049-9.713l0.062,0.032l0.438-0.83
+  C44.59,33.907,44.093,32.354,42.861,31.697z"/>
+<path d="M-188.033,115.071l-1.822-0.82c-1.004-0.451-2.197-0.002-2.653,1l-17.696,38.855l-17.656-38.855
+  c-0.455-1.002-1.647-1.451-2.651-1l-1.822,0.82c-1.004,0.451-1.452,1.641-0.997,2.642l19.088,42.005
+  c0.188,0.689,0.863,1.252,1.752,1.486h0.05c0.284,0.076,0.587,0.125,0.906,0.125h2.703c0.319,0,0.622-0.049,0.906-0.125h-0.015
+  c0.714-0.189,1.296-0.584,1.592-1.094l0.019-0.039c0.126-0.23,0.2-0.48,0.2-0.742c0,0.262-0.073,0.512-0.198,0.742l19.291-42.359
+  C-186.582,116.711-187.029,115.522-188.033,115.071z"/>
+<path d="M-82.265,48.943l-15.356-15.358l15.356-15.355c1.021-1.02,1.021-2.68,0-3.701l-1.233-1.234
+  c-0.985-0.985-2.716-0.985-3.7,0l-15.356,15.356l-15.356-15.356c-0.986-0.986-2.714-0.986-3.701,0l-1.233,1.233
+  c-1.021,1.02-1.021,2.68,0,3.7l15.356,15.357l-15.356,15.357c-0.493,0.493-0.764,1.149-0.764,1.851c0,0.7,0.271,1.357,0.764,1.85
+  l1.233,1.233c0.986,0.985,2.714,0.985,3.701,0l15.356-15.356l15.356,15.356c0.492,0.492,1.149,0.764,1.851,0.764
+  c0.7,0,1.357-0.271,1.85-0.764l1.233-1.233C-81.245,51.622-81.245,49.962-82.265,48.943z"/>
+<path d="M-60.096-43.648c-0.251-0.666-0.746-1.192-1.393-1.483l-1.617-0.729c-0.345-0.154-0.712-0.233-1.089-0.233
+  c-1.046,0-2.002,0.612-2.436,1.563l-14.887,32.687L-96.372-44.53c-0.431-0.949-1.387-1.563-2.434-1.563
+  c-0.378,0-0.744,0.079-1.09,0.233l-1.615,0.729c-0.646,0.291-1.143,0.817-1.393,1.485c-0.252,0.666-0.229,1.387,0.064,2.034
+  l16.904,37.199c0.275,0.887,1.078,1.58,2.161,1.865c0.034,0.011,0.08,0.017,0.126,0.022c0.32,0.078,0.639,0.118,0.948,0.118h2.398
+  c0.336,0,0.686-0.047,1.034-0.141c0.028-0.009,0.056-0.018,0.085-0.028c0.818-0.239,1.488-0.729,1.852-1.354
+  c0.005-0.009,0.013-0.025,0.023-0.044c0.002-0.005,0.003-0.009,0.007-0.014c0.049-0.091,0.094-0.186,0.13-0.282l17.008-37.343
+  C-59.869-42.259-59.845-42.982-60.096-43.648z"/></svg>Copy</a></li>
+                  <li><a id="paste-selected" href="#" title="Paste"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"><path d="M-201.519,15.309l18.312-18.312c0.777-0.778,0.777-2.05,0-2.828l-1.414-1.415
+  c-0.777-0.778-2.051-0.778-2.828,0l-18.312,18.312l-18.312-18.313c-0.778-0.778-2.05-0.778-2.828,0l-1.415,1.414
+  c-0.778,0.778-0.778,2.05,0,2.828l18.312,18.313l-18.312,18.312c-0.778,0.777-0.778,2.051,0,2.828l1.414,1.414
+  c0.778,0.777,2.05,0.777,2.828,0l18.312-18.312l18.312,18.312c0.777,0.777,2.051,0.777,2.828,0l1.414-1.414
+  c0.777-0.777,0.777-2.051,0-2.828L-201.519,15.309z"/>
+<path d="M-185.477,88.656l-1.765-0.941c-0.919-0.49-2.055-0.176-2.612,0.684l-0.008-0.006l-0.197,0.291l0.011,0.01
+  c-0.029,0.033-0.06,0.064-0.088,0.107c-3.204,4.824-8.678,8.014-14.889,8.014c-9.856,0-17.875-8.02-17.875-17.875
+  c0-9.857,8.019-17.875,17.875-17.875c6.211,0,11.685,3.189,14.889,8.014c0.028,0.043,0.059,0.074,0.088,0.107l-0.011,0.01
+  l0.197,0.291l0.008-0.008c0.558,0.861,1.693,1.176,2.612,0.686l1.765-0.941c0.953-0.508,1.322-1.689,0.847-2.65
+  c-0.009-0.02-0.013-0.037-0.022-0.057l-0.008,0.006c-4.199-6.861-11.749-11.457-20.364-11.457
+  c-13.165,0-23.875,10.711-23.875,23.875s10.71,23.875,23.875,23.875c8.615,0,16.165-4.598,20.364-11.457l0.008,0.004
+  c0.01-0.018,0.014-0.037,0.022-0.055C-184.154,90.346-184.523,89.164-185.477,88.656z"/>
+<path d="M-23.216-43.803l-1.536-0.821c-0.862-0.459-1.96-0.368-2.729,0.174l-0.135-0.12l-0.779,1.155
+  c-0.004,0.009-0.011,0.016-0.017,0.025c-2.741,4.127-7.318,6.591-12.244,6.591c-8.106,0-14.701-6.595-14.701-14.701
+  s6.595-14.702,14.701-14.702c4.79,0,9.249,2.331,12.012,6.252l1.037,1.514l0.127-0.113c0.77,0.542,1.865,0.631,2.728,0.172
+  l1.536-0.819c1.231-0.657,1.729-2.211,1.141-3.391l-0.506-0.967l-0.063,0.04c-4.046-6.063-10.714-9.657-18.011-9.657
+  c-11.949,0-21.67,9.721-21.67,21.671c0,11.951,9.722,21.671,21.67,21.671c7.318,0,14.008-3.615,18.049-9.713l0.062,0.032l0.438-0.83
+  C-21.487-41.593-21.984-43.146-23.216-43.803z"/>
+<path d="M-188.033,115.071l-1.822-0.82c-1.004-0.451-2.197-0.002-2.653,1l-17.696,38.855l-17.656-38.855
+  c-0.455-1.002-1.647-1.451-2.651-1l-1.822,0.82c-1.004,0.451-1.452,1.641-0.997,2.642l19.088,42.005
+  c0.188,0.689,0.863,1.252,1.752,1.486h0.05c0.284,0.076,0.587,0.125,0.906,0.125h2.703c0.319,0,0.622-0.049,0.906-0.125h-0.015
+  c0.714-0.189,1.296-0.584,1.592-1.094l0.019-0.039c0.126-0.23,0.2-0.48,0.2-0.742c0,0.262-0.073,0.512-0.198,0.742l19.291-42.359
+  C-186.582,116.711-187.029,115.522-188.033,115.071z"/>
+<path d="M-70.71,39.346l-15.356-15.358L-70.71,8.632c1.021-1.02,1.021-2.68,0-3.701l-1.233-1.234
+  c-0.985-0.985-2.716-0.985-3.7,0L-91,19.054l-15.356-15.356c-0.986-0.986-2.714-0.986-3.701,0l-1.233,1.233
+  c-1.021,1.02-1.021,2.68,0,3.7l15.356,15.357l-15.356,15.357c-0.493,0.493-0.764,1.149-0.764,1.851c0,0.7,0.271,1.357,0.764,1.85
+  l1.233,1.233c0.986,0.985,2.714,0.985,3.701,0L-91,28.922l15.356,15.356c0.492,0.492,1.149,0.764,1.851,0.764
+  c0.7,0,1.357-0.271,1.85-0.764l1.233-1.233C-69.689,42.024-69.689,40.364-70.71,39.346z"/>
+<path d="M45.404,4.602c-0.251-0.666-0.746-1.192-1.393-1.483L42.395,2.39c-0.345-0.154-0.712-0.233-1.089-0.233
+  c-1.046,0-2.002,0.612-2.436,1.563L23.983,36.407L9.128,3.72C8.698,2.771,7.742,2.157,6.695,2.157c-0.378,0-0.744,0.079-1.09,0.233
+  L3.99,3.119C3.343,3.409,2.847,3.936,2.597,4.604C2.345,5.269,2.369,5.991,2.662,6.638l16.904,37.199
+  c0.275,0.887,1.078,1.58,2.161,1.865c0.034,0.011,0.08,0.017,0.126,0.022c0.32,0.078,0.639,0.118,0.948,0.118h2.398
+  c0.336,0,0.686-0.047,1.034-0.141c0.028-0.009,0.056-0.018,0.085-0.028c0.818-0.239,1.488-0.729,1.852-1.354
+  c0.005-0.009,0.013-0.025,0.023-0.044c0.002-0.005,0.003-0.009,0.007-0.014c0.049-0.091,0.094-0.186,0.13-0.282L45.338,6.638
+  C45.631,5.991,45.655,5.268,45.404,4.602z"/></svg>Paste</a></li>
+                  <li><a id="delete-selected" href="#" title="Delete selected"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 42.00,15.00l0.00,24.00 c0.00,4.971-4.032,9.00-9.00,9.00L15.00,48.00 c-4.971,0.00-9.00-4.029-9.00-9.00L6.00,15.00 C 4.344,15.00, 3.00,13.659, 3.00,12.00 s 1.344-3.00, 3.00-3.00l9.00,0.00 l0.00,0.00c0.00-4.971, 4.029-9.00, 9.00-9.00c 4.968,0.00, 9.00,4.029, 9.00,9.00l0.00,0.00l9.00,0.00 c 1.659,0.00, 3.00,1.341, 3.00,3.00S 43.659,15.00, 42.00,15.00z M 24.00,6.00C 22.344,6.00, 21.00,7.341, 21.00,9.00l6.00,0.00 C 27.00,7.341, 25.659,6.00, 24.00,6.00z M 12.00,15.00l0.00,24.00 c0.00,1.659, 1.344,3.00, 3.00,3.00l18.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L36.00,15.00 L12.00,15.00 z M 28.50,36.00C 27.675,36.00, 27.00,35.328, 27.00,34.50l0.00,-12.00 C 27.00,21.672, 27.675,21.00, 28.50,21.00C 29.328,21.00, 30.00,21.672, 30.00,22.50l0.00,12.00 C 30.00,35.328, 29.328,36.00, 28.50,36.00z M 19.50,36.00C 18.672,36.00, 18.00,35.328, 18.00,34.50l0.00,-12.00 C 18.00,21.672, 18.672,21.00, 19.50,21.00C 20.328,21.00, 21.00,21.672, 21.00,22.50l0.00,12.00 C 21.00,35.328, 20.328,36.00, 19.50,36.00z"></path></svg>Delete</a></li>
+                  <li class="divider"></li>
+                  <li><a id="revert-all" href="javascript:void(0)" title="Revert All Changes"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 46.416,38.646c-0.975,0.522-2.16,0.465-3.078-0.15l-18.00-12.00C 24.501,25.938, 24.00,25.002, 24.00,24.00 c0.00-1.005, 0.501-1.938, 1.335-2.496l 18.00-12.00c 0.921-0.612, 2.103-0.672, 3.078-0.15S 48.00,10.893, 48.00,12.00l0.00,24.00 C 48.00,37.107, 47.391,38.121, 46.416,38.646z M 22.416,38.646c-0.975,0.522-2.16,0.465-3.078-0.15l-18.00-12.00C 0.501,25.938,0.00,25.002,0.00,24.00c0.00-1.005, 0.501-1.938, 1.335-2.496l 18.00-12.00 c 0.921-0.612, 2.103-0.672, 3.078-0.15S 24.00,10.893, 24.00,12.00l0.00,12.00 l0.00,12.00 C 24.00,37.107, 23.391,38.121, 22.416,38.646z"></path></svg>Revert All Changes</a></li>
+                </ul>
+              </div>
+              <button title="Start Tutorial" class="help"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#ffffff" class="svg replaced-svg"> <path d="M 37.131,22.161C 36.942,22.758, 36.624,23.376, 36.00,24.00c-3.00,3.00-3.00,6.00-3.00,6.00l0.00,3.00 c0.00,1.659-1.341,3.00-3.00,3.00L18.00,36.00 c-1.659,0.00-3.00-1.341-3.00-3.00l0.00,-3.00 c0.00-2.181-1.572-4.341-2.439-5.373c-0.027-0.03-0.051-0.063-0.072-0.09 C 12.195,24.195, 12.00,24.00, 12.00,24.00L12.00,23.895 C 10.134,21.411, 9.00,18.351, 9.00,15.00c0.00-8.286, 6.714-15.00, 15.00-15.00s 15.00,6.714, 15.00,15.00C 39.00,17.607, 38.31,20.037, 37.131,22.161z M 24.00,6.00 C 19.029,6.00, 15.00,10.029, 15.00,15.00c0.00,3.915, 2.514,7.209, 6.00,8.448L21.00,27.00 c0.00,1.659, 1.341,3.00, 3.00,3.00s 3.00-1.341, 3.00-3.00L27.00,23.448 C 30.486,22.209, 33.00,18.915, 33.00,15.00 C 33.00,10.029, 28.971,6.00, 24.00,6.00z M 19.50,39.00l9.00,0.00 c 0.828,0.00, 1.50,0.672, 1.50,1.50S 29.328,42.00, 28.50,42.00l-9.00,0.00 C 18.672,42.00, 18.00,41.328, 18.00,40.50S 18.672,39.00, 19.50,39.00z M 22.50,45.00 l3.00,0.00 C 26.328,45.00, 27.00,45.672, 27.00,46.50S 26.328,48.00, 25.50,48.00l-3.00,0.00 C 21.672,48.00, 21.00,47.328, 21.00,46.50S 21.672,45.00, 22.50,45.00z"></path></svg>
+              </button>
+              <div class="right-controls"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brick-container">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <div class="brick-bar">
+              <div class="bkg-controls">
+                <div class="style-group">
+                  <h6>Background Settings</h6>
+                  <div class="btn-group">
+                    <button title="Set Background Image" class="bkg-set-image"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 19.407,33.093c-2.229,0.00-5.718-8.814-7.407-5.25 c-0.702,1.482-1.872,4.641-3.00,7.17L9.00,36.00 c0.00,1.659, 1.344,3.00, 3.00,3.00l24.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00l0.00,-1.398 c-1.695-3.816-3.891-10.14-6.00-12.57 C 28.686,17.064, 23.532,33.093, 19.407,33.093z M 39.00,0.00L9.00,0.00 C 4.029,0.00,0.00,4.029,0.00,9.00l0.00,30.00 c0.00,4.968, 4.029,9.00, 9.00,9.00l30.00,0.00 c 4.968,0.00, 9.00-4.032, 9.00-9.00L48.00,9.00 C 48.00,4.029, 43.968,0.00, 39.00,0.00z M 42.00,39.00c0.00,1.659-1.341,3.00-3.00,3.00L9.00,42.00 c-1.656,0.00-3.00-1.341-3.00-3.00L6.00,9.00 c0.00-1.656, 1.344-3.00, 3.00-3.00l30.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00L42.00,39.00 z M 13.50,18.00C 15.987,18.00, 18.00,15.987, 18.00,13.50S 15.987,9.00, 13.50,9.00S 9.00,11.013, 9.00,13.50S 11.013,18.00, 13.50,18.00z"></path></svg>
+                    </button>
+                    <button title="Edit Background Image" class="bkg-edit-image"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 42.00,48.00l0.00,-3.00 l3.00,0.00 l0.00,-3.00 l3.00,0.00 l0.00,6.00 L42.00,48.00 z M 45.00,3.00l-3.00,0.00 L42.00,0.00 l6.00,0.00 l0.00,6.00 l-3.00,0.00 L45.00,3.00 z M 42.00,42.00L6.00,42.00 L6.00,6.00 l36.00,0.00 L42.00,42.00 z M 36.00,12.00L12.00,12.00 l0.00,24.00 l24.00,0.00 L36.00,12.00 z M 18.00,15.00c 1.659,0.00, 3.00,1.341, 3.00,3.00S 19.659,21.00, 18.00,21.00S 15.00,19.659, 15.00,18.00S 16.341,15.00, 18.00,15.00z M 18.993,33.00L15.00,33.00 L15.00,28.509 C 16.344,30.123, 17.805,32.508, 18.993,33.00z M 33.00,22.032L33.00,33.00 L19.818,33.00 C 23.871,32.022, 28.827,17.226, 33.00,22.032z M 3.00,6.00L0.00,6.00 L0.00,0.00 l6.00,0.00 l0.00,3.00 L3.00,3.00 L3.00,6.00 z M 3.00,45.00l3.00,0.00 l0.00,3.00 L0.00,48.00 l0.00,-6.00 l3.00,0.00 L3.00,45.00 z"></path></svg>
+                    </button>
+                    <button title="Remove Background Image" class="bkg-remove-image disabled"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 24.00,48.00c-13.254,0.00-24.00-10.746-24.00-24.00s 10.746-24.00, 24.00-24.00c 13.254,0.00, 24.00,10.746, 24.00,24.00 S 37.254,48.00, 24.00,48.00z M 24.00,42.00c 3.885,0.00, 7.461-1.26, 10.404-3.354l-25.05-25.05C 7.26,16.539, 6.00,20.115, 6.00,24.00C 6.00,33.939, 14.061,42.00, 24.00,42.00z M 24.00,6.00 C 20.115,6.00, 16.539,7.26, 13.596,9.354l 25.05,25.05C 40.74,31.461, 42.00,27.888, 42.00,24.00C 42.00,14.061, 33.939,6.00, 24.00,6.00z"></path></svg>
+                    </button>
+                    <button title="Change Background Color" class="bkg-change-color"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 24.00,48.00c-8.286,0.00-15.00-6.714-15.00-15.00S 24.00,0.00, 24.00,0.00s 15.00,24.714, 15.00,33.00S 32.286,48.00, 24.00,48.00z M 32.832,31.653C 32.058,35.832, 28.404,39.00, 24.00,39.00s-8.058-3.168-8.832-7.347C 15.066,32.154, 15.00,32.619, 15.00,33.00c0.00,4.971, 4.029,9.00, 9.00,9.00s 9.00-4.029, 9.00-9.00 C 33.00,32.619, 32.934,32.154, 32.832,31.653z"></path></svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="style-group">
+                  <h6>Size</h6>
+                  <div data-toggle="buttons-radio" class="btn-group">
+                    <button title="Cover Full Width (Auto Adjust Height)" class="btn bkg-cover active"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 11.742,7.50 L 20.121,15.879 C 21.294,17.052 21.294,18.948 20.121,20.121 C 18.948,21.294 17.052,21.294 15.879,20.121 L 7.50,11.742 L 5.121,14.121 C 4.548,14.694 3.78,15.00 3.00,15.00 C 2.613,15.00 2.223,14.925 1.851,14.772 C 0.732,14.307 0.00,13.212 0.00,12.00 L 0.00,3.00 C 0.00,1.344 1.344,0.00 3.00,0.00 L 12.00,0.00 C 13.212,0.00 14.307,0.732 14.772,1.851 C 15.237,2.973 14.979,4.263 14.121,5.121 L 11.742,7.50 ZM 45.00,0.00 C 46.659,0.00 48.00,1.344 48.00,3.00 L 48.00,12.00 C 48.00,13.212 47.268,14.307 46.149,14.772 C 45.777,14.925 45.387,15.00 45.00,15.00 C 44.22,15.00 43.452,14.694 42.879,14.121 L 40.50,11.742 L 32.121,20.121 C 30.948,21.294 29.052,21.294 27.879,20.121 C 26.706,18.948 26.706,17.052 27.879,15.879 L 36.258,7.50 L 33.879,5.121 C 33.021,4.263 32.766,2.973 33.228,1.851 C 33.69,0.732 34.788,0.00 36.00,0.00 L 45.00,0.00 ZM 15.879,27.879 C 17.052,26.706 18.948,26.706 20.121,27.879 C 21.294,29.052 21.294,30.948 20.121,32.121 L 11.742,40.50 L 14.121,42.879 C 14.979,43.737 15.237,45.027 14.772,46.149 C 14.307,47.268 13.212,48.00 12.00,48.00 L 3.00,48.00 C 1.344,48.00 0.00,46.659 0.00,45.00 L 0.00,36.00 C 0.00,34.788 0.732,33.69 1.851,33.228 C 2.223,33.075 2.613,33.00 3.00,33.00 C 3.78,33.00 4.548,33.306 5.121,33.879 L 7.50,36.258 L 15.879,27.879 ZM 46.149,33.228 C 47.268,33.69 48.00,34.788 48.00,36.00 L 48.00,45.00 C 48.00,46.659 46.659,48.00 45.00,48.00 L 36.00,48.00 C 34.788,48.00 33.69,47.268 33.228,46.149 C 32.766,45.027 33.021,43.737 33.879,42.879 L 36.258,40.50 L 27.879,32.121 C 26.706,30.948 26.706,29.052 27.879,27.879 C 29.052,26.706 30.948,26.706 32.121,27.879 L 40.50,36.258 L 42.879,33.879 C 43.452,33.306 44.22,33.00 45.00,33.00 C 45.387,33.00 45.777,33.075 46.149,33.228 Z"></path></svg>
+                    </button>
+                    <button title="Fixed Width and Height" class="btn bkg-fixed"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,48.00L9.00,48.00 c-4.971,0.00-9.00-4.029-9.00-9.00L0.00,9.00 c0.00-4.971, 4.029-9.00, 9.00-9.00l30.00,0.00 c 4.968,0.00, 9.00,4.029, 9.00,9.00l0.00,30.00 C 48.00,43.971, 43.968,48.00, 39.00,48.00z M 42.00,9.00c0.00-1.656-1.341-3.00-3.00-3.00L9.00,6.00 C 7.344,6.00, 6.00,7.344, 6.00,9.00l0.00,30.00 c0.00,1.659, 1.344,3.00, 3.00,3.00l30.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L42.00,9.00 z M 36.00,39.00L27.00,39.00 l 12.00-12.00l0.00,9.00 C 39.00,37.659, 37.659,39.00, 36.00,39.00z M 36.00,9.00c 1.659,0.00, 3.00,1.344, 3.00,3.00l0.00,9.00 L 27.00,9.00L36.00,9.00 z M 12.00,39.00 c-1.656,0.00-3.00-1.341-3.00-3.00L9.00,27.00 l 12.00,12.00L12.00,39.00 z M 9.00,12.00c0.00-1.656, 1.344-3.00, 3.00-3.00l9.00,0.00 L 9.00,21.00L9.00,12.00 z"></path></svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="style-group">
+                  <h6>Background Position</h6>
+                  <div class="btn-group">
+                    <button title="Background Doesn't Scroll" class="btn bkg-attachment"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,48.00L9.00,48.00 c-1.656,0.00-3.00-1.341-3.00-3.00L6.00,24.00 c0.00-1.656, 1.344-3.00, 3.00-3.00L9.00,15.00 c0.00-8.286, 6.717-15.00, 15.00-15.00c 8.286,0.00, 15.00,6.714, 15.00,15.00l0.00,6.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00l0.00,21.00 C 42.00,46.659, 40.659,48.00, 39.00,48.00z M 33.00,15.00c0.00-4.971-4.032-9.00-9.00-9.00 C 19.029,6.00, 15.00,10.029, 15.00,15.00l0.00,6.00 l18.00,0.00 L33.00,15.00 z M 36.00,27.00L12.00,27.00 l0.00,15.00 l24.00,0.00 L36.00,27.00 z"></path></svg>
+                    </button>
+                  </div>
+                  <div data-toggle="buttons-radio" class="btn-group bkg-position-group disabled">
+                    <button title="Left" data-pos="left" class="btn bkg-left skinny">L</button>
+                    <button title="Center" data-pos="center" class="btn bkg-center skinny">C</button>
+                    <button title="Right" data-pos="right" class="btn bkg-right skinny">R</button>
+                  </div>
+                  <div data-toggle="buttons-radio" class="btn-group bkg-position-group disabled">
+                    <button title="Top" data-pos="top" class="btn bkg-top skinny">T</button>
+                    <button title="Middle" data-pos="center" class="btn bkg-middle skinny">M</button>
+                    <button title="Bottom" data-pos="bottom" class="btn bkg-bottom skinny">B</button>
+                  </div>
+                </div>
+                <div class="style-group">
+                  <h6>Repeat</h6>
+                  <div class="btn-group">
+                    <button title="X Repeat" class="btn bkg-xrepeat"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M0,39V9c0-4.971,4.029-9,9-9h30c4.971,0,9,4.029,9,9v30c0,4.971-4.029,9-9,9H9C4.029,48,0,43.971,0,39z M39,42 c1.656,0,3-1.341,3-3V9c0-1.659-1.344-3-3-3H9C7.341,6,6,7.341,6,9v30c0,1.659,1.341,3,3,3H39z M18,12v24h-6V12H18z M27,12v24h-6V12 H27z M36,12v24h-6V12H36z"></path></svg>
+                    </button>
+                    <button title="Y Repeat" class="btn bkg-yrepeat"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,48.00L9.00,48.00 c-4.971,0.00-9.00-4.029-9.00-9.00L0.00,9.00 c0.00-4.971, 4.029-9.00, 9.00-9.00l30.00,0.00 c 4.971,0.00, 9.00,4.029, 9.00,9.00l0.00,30.00 C 48.00,43.971, 43.971,48.00, 39.00,48.00z M 42.00,9.00c0.00-1.656-1.341-3.00-3.00-3.00L9.00,6.00 C 7.341,6.00, 6.00,7.344, 6.00,9.00l0.00,30.00 c0.00,1.659, 1.341,3.00, 3.00,3.00l30.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L42.00,9.00 z M 12.00,30.00l24.00,0.00 l0.00,6.00 L12.00,36.00 L12.00,30.00 z M 12.00,21.00l24.00,0.00 l0.00,6.00 L12.00,27.00 L12.00,21.00 z M 12.00,12.00l24.00,0.00 l0.00,6.00 L12.00,18.00 L12.00,12.00 z"></path></svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="style-group">
+                  <h6>Apply &amp; Close</h6>
+                  <div class="btn-group">
+                    <button title="Apply &amp; Close" class="bkg-close"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,0.00L9.00,0.00 C 4.029,0.00,0.00,4.032,0.00,9.00l0.00,30.00 c0.00,4.971, 4.029,9.00, 9.00,9.00l30.00,0.00 c 4.971,0.00, 9.00-4.029, 9.00-9.00L48.00,9.00 C 48.00,4.032, 43.971,0.00, 39.00,0.00z M 42.00,39.00c0.00,1.659-1.341,3.00-3.00,3.00L9.00,42.00 c-1.656,0.00-3.00-1.341-3.00-3.00L6.00,9.00 c0.00-1.656, 1.344-3.00, 3.00-3.00l30.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00L42.00,39.00 z M 31.377,15.51L 20.772,26.115L 16.527,21.873c-1.17-1.173-3.069-1.173-4.242,0.00s-1.173,3.072,0.00,4.242l 6.366,6.363 c 1.17,1.173, 3.069,1.173, 4.242,0.00l 12.726-12.726c 1.173-1.173, 1.173-3.069,0.00-4.242S 32.55,14.337, 31.377,15.51z"></path></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="color-controls">
+                <div class="style-group">
+                  <h6>Color</h6>
+                  <div class="btn-group">
+                    <button title="Change Color" class="change-active-color"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 24.00,48.00c-8.286,0.00-15.00-6.714-15.00-15.00S 24.00,0.00, 24.00,0.00s 15.00,24.714, 15.00,33.00S 32.286,48.00, 24.00,48.00z M 32.832,31.653C 32.058,35.832, 28.404,39.00, 24.00,39.00s-8.058-3.168-8.832-7.347C 15.066,32.154, 15.00,32.619, 15.00,33.00c0.00,4.971, 4.029,9.00, 9.00,9.00s 9.00-4.029, 9.00-9.00 C 33.00,32.619, 32.934,32.154, 32.832,31.653z"></path></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="link-controls">
+                <div class="style-group">
+                  <h6>Link Editing</h6>
+                  <div class="btn-group">
+                    <button title="Add Link" class="add-link"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 45.438,19.533l-4.437,4.431c-2.766,2.766-6.873,3.321-10.212,1.731 l 10.212-10.215c 1.173-1.173, 1.173-3.072,0.00-4.242L 36.762,6.99c-1.173-1.173-3.069-1.173-4.242,0.00L 22.305,17.208 C 20.715,13.866, 21.27,9.759, 24.036,6.99l 4.428-4.431c 3.516-3.513, 9.216-3.513, 12.726,0.00l 4.248,4.242 C 48.948,10.317, 48.948,16.017, 45.438,19.533z M 15.552,32.445c-1.173-1.173-1.173-3.069,0.00-4.242l 12.726-12.726 c 1.173-1.173, 3.069-1.173, 4.242,0.00s 1.173,3.069,0.00,4.242l-12.726,12.726C 18.624,33.618, 16.722,33.618, 15.552,32.445z M 7.065,36.69 l 4.242,4.242c 1.173,1.173, 3.069,1.173, 4.242,0.00l 10.218-10.218c 1.59,3.342, 1.035,7.449-1.731,10.218l-4.056,4.431 c-3.516,3.516-9.213,3.516-12.729,0.00l-4.62-4.617c-3.513-3.516-3.513-9.213,0.00-12.729l 4.431-4.056C 9.834,21.195, 13.938,20.64, 17.283,22.23 l-10.218,10.215C 5.895,33.618, 5.895,35.52, 7.065,36.69z"></path></svg>
+                    </button>
+                    <div class="link-adder dropdown-menu">
+                      <p>URL or Email Address:</p>
+                      <form id="link-form" action="#">
+                        <input type="text" placeholder="google.com or me@email.com" class="link-box"/>
+                        <button class="set-link">Set</button>
+                      </form>
+                      <p>Your Other Pages</p>
+                      <ul class="other-pages"></ul><br/>
+                      <p>Within This Page</p>
+                      <div class="same-page btn-group">
+                        <button class="current">Sections in This Page</button>
+                        <button data-toggle="dropdown" class="dropdown-toggle"><span class="caret"></span></button>
+                        <ul class="dropdown-menu in-page-links"></ul>
+                      </div>
+                    </div>
+                    <button title="Remove Link" class="remove-link"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 24.00,48.00c-13.254,0.00-24.00-10.746-24.00-24.00s 10.746-24.00, 24.00-24.00c 13.254,0.00, 24.00,10.746, 24.00,24.00 S 37.254,48.00, 24.00,48.00z M 24.00,42.00c 3.885,0.00, 7.461-1.26, 10.404-3.354l-25.05-25.05C 7.26,16.539, 6.00,20.115, 6.00,24.00C 6.00,33.939, 14.061,42.00, 24.00,42.00z M 24.00,6.00 C 20.115,6.00, 16.539,7.26, 13.596,9.354l 25.05,25.05C 40.74,31.461, 42.00,27.888, 42.00,24.00C 42.00,14.061, 33.939,6.00, 24.00,6.00z"></path></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="image-controls">
+                <div class="style-group">
+                  <h6>Images</h6>
+                  <div class="btn-group">
+                    <button id="img-replace" title="Replace Image"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 19.407,33.093c-2.229,0.00-5.718-8.814-7.407-5.25 c-0.702,1.482-1.872,4.641-3.00,7.17L9.00,36.00 c0.00,1.659, 1.344,3.00, 3.00,3.00l24.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00l0.00,-1.398 c-1.695-3.816-3.891-10.14-6.00-12.57 C 28.686,17.064, 23.532,33.093, 19.407,33.093z M 39.00,0.00L9.00,0.00 C 4.029,0.00,0.00,4.029,0.00,9.00l0.00,30.00 c0.00,4.968, 4.029,9.00, 9.00,9.00l30.00,0.00 c 4.968,0.00, 9.00-4.032, 9.00-9.00L48.00,9.00 C 48.00,4.029, 43.968,0.00, 39.00,0.00z M 42.00,39.00c0.00,1.659-1.341,3.00-3.00,3.00L9.00,42.00 c-1.656,0.00-3.00-1.341-3.00-3.00L6.00,9.00 c0.00-1.656, 1.344-3.00, 3.00-3.00l30.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00L42.00,39.00 z M 13.50,18.00C 15.987,18.00, 18.00,15.987, 18.00,13.50S 15.987,9.00, 13.50,9.00S 9.00,11.013, 9.00,13.50S 11.013,18.00, 13.50,18.00z"></path></svg>
+                    </button>
+                    <button id="img-edit" title="Edit Image"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 42.00,48.00l0.00,-3.00 l3.00,0.00 l0.00,-3.00 l3.00,0.00 l0.00,6.00 L42.00,48.00 z M 45.00,3.00l-3.00,0.00 L42.00,0.00 l6.00,0.00 l0.00,6.00 l-3.00,0.00 L45.00,3.00 z M 42.00,42.00L6.00,42.00 L6.00,6.00 l36.00,0.00 L42.00,42.00 z M 36.00,12.00L12.00,12.00 l0.00,24.00 l24.00,0.00 L36.00,12.00 z M 18.00,15.00c 1.659,0.00, 3.00,1.341, 3.00,3.00S 19.659,21.00, 18.00,21.00S 15.00,19.659, 15.00,18.00S 16.341,15.00, 18.00,15.00z M 18.993,33.00L15.00,33.00 L15.00,28.509 C 16.344,30.123, 17.805,32.508, 18.993,33.00z M 33.00,22.032L33.00,33.00 L19.818,33.00 C 23.871,32.022, 28.827,17.226, 33.00,22.032z M 3.00,6.00L0.00,6.00 L0.00,0.00 l6.00,0.00 l0.00,3.00 L3.00,3.00 L3.00,6.00 z M 3.00,45.00l3.00,0.00 l0.00,3.00 L0.00,48.00 l0.00,-6.00 l3.00,0.00 L3.00,45.00 z"></path></svg>
+                    </button>
+                    <button id="img-fit" title="Fit Image in Section"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 18.00,27.00 C 19.659,27.00 21.00,28.341 21.00,30.00 L 21.00,39.00 C 21.00,40.212 20.268,41.31 19.149,41.772 C 18.777,41.925 18.387,42.00 18.00,42.00 C 17.22,42.00 16.452,41.694 15.879,41.121 L 13.50,38.742 L 5.121,47.121 C 3.948,48.294 2.052,48.294 0.879,47.121 C -0.294,45.948 -0.294,44.052 0.879,42.879 L 9.258,34.50 L 6.879,32.121 C 6.021,31.263 5.766,29.973 6.228,28.851 C 6.69,27.732 7.788,27.00 9.00,27.00 L 18.00,27.00 ZM 30.00,21.00 C 28.341,21.00 27.00,19.659 27.00,18.00 L 27.00,9.00 C 27.00,7.788 27.732,6.69 28.851,6.228 C 29.223,6.075 29.613,6.00 30.00,6.00 C 30.78,6.00 31.548,6.306 32.121,6.879 L 34.50,9.258 L 42.879,0.879 C 44.052-0.294 45.948-0.294 47.121,0.879 C 48.294,2.052 48.294,3.948 47.121,5.121 L 38.742,13.50 L 41.121,15.879 C 41.979,16.737 42.234,18.027 41.772,19.149 C 41.31,20.268 40.212,21.00 39.00,21.00 L 30.00,21.00 ZM 19.149,6.228 C 20.268,6.69 21.00,7.788 21.00,9.00 L 21.00,18.00 C 21.00,19.659 19.659,21.00 18.00,21.00 L 9.00,21.00 C 7.788,21.00 6.69,20.268 6.228,19.149 C 5.766,18.027 6.021,16.737 6.879,15.879 L 9.258,13.50 L 0.879,5.121 C -0.294,3.948 -0.294,2.052 0.879,0.879 C 2.052-0.294 3.948-0.294 5.121,0.879 L 13.50,9.258 L 15.879,6.879 C 16.452,6.306 17.22,6.00 18.00,6.00 C 18.387,6.00 18.777,6.075 19.149,6.228 ZM 38.742,34.50 L 47.121,42.879 C 48.294,44.052 48.294,45.948 47.121,47.121 C 45.948,48.294 44.052,48.294 42.879,47.121 L 34.50,38.742 L 32.121,41.121 C 31.548,41.694 30.78,42.00 30.00,42.00 C 29.613,42.00 29.223,41.925 28.851,41.772 C 27.732,41.31 27.00,40.212 27.00,39.00 L 27.00,30.00 C 27.00,28.341 28.341,27.00 30.00,27.00 L 39.00,27.00 C 40.212,27.00 41.31,27.732 41.772,28.851 C 42.234,29.973 41.979,31.263 41.121,32.121 L 38.742,34.50 Z"></path></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="round-controls">
+                <div class="style-group">
+                  <h6>Corner Rounding</h6>
+                  <div class="btn-group">
+                    <button title="Squarer" class="decrease-radius"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,48.00L9.00,48.00 c-4.971,0.00-9.00-4.032-9.00-9.00L0.00,9.00 c0.00-4.971, 4.029-9.00, 9.00-9.00l30.00,0.00 c 4.971,0.00, 9.00,4.029, 9.00,9.00l0.00,30.00 C 48.00,43.968, 43.971,48.00, 39.00,48.00z M 42.00,9.00c0.00-1.656-1.341-3.00-3.00-3.00L9.00,6.00 C 7.341,6.00, 6.00,7.344, 6.00,9.00l0.00,30.00 c0.00,1.659, 1.341,3.00, 3.00,3.00l30.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L42.00,9.00 z M 33.00,27.00L15.00,27.00 C 13.341,27.00, 12.00,25.656, 12.00,24.00s 1.341-3.00, 3.00-3.00l18.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00S 34.659,27.00, 33.00,27.00z"></path></svg>
+                    </button>
+                    <button title="Rounder" class="increase-radius"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,48.00L9.00,48.00 c-4.971,0.00-9.00-4.032-9.00-9.00L0.00,9.00 c0.00-4.971, 4.029-9.00, 9.00-9.00l30.00,0.00 c 4.971,0.00, 9.00,4.029, 9.00,9.00l0.00,30.00 C 48.00,43.968, 43.971,48.00, 39.00,48.00z M 42.00,9.00c0.00-1.656-1.341-3.00-3.00-3.00L9.00,6.00 C 7.341,6.00, 6.00,7.344, 6.00,9.00l0.00,30.00 c0.00,1.659, 1.341,3.00, 3.00,3.00l30.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L42.00,9.00 z M 33.00,27.00L27.00,27.00 l0.00,6.00 c0.00,1.659-1.341,3.00-3.00,3.00s-3.00-1.341-3.00-3.00L21.00,27.00 L15.00,27.00 C 13.341,27.00, 12.00,25.656, 12.00,24.00s 1.341-3.00, 3.00-3.00l6.00,0.00 L21.00,15.00 c0.00-1.656, 1.341-3.00, 3.00-3.00 s 3.00,1.344, 3.00,3.00l0.00,6.00 l6.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00S 34.659,27.00, 33.00,27.00z"></path></svg>
+                    </button>
+                    <button title="Radius Value" style="padding-bottom: 9px;">
+                      <form id="radius-form" action="#" style="margin:0">
+                        <input type="text" style="width:40px;margin:0" class="radius-box"/><span>px</span>
+                      </form>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div data-role="editor-toolbar" data-target=".slide-int" class="text-controls">
+                <div class="style-group">
+                  <h6>Font Family</h6>
+                  <div class="btn-group">
+                    <button class="current-font">Open Sans</button>
+                    <button title="Change font" data-toggle="dropdown" class="dropdown-toggle"><span class="caret"> </span></button>
+                    <ul class="dropdown-menu font-selector">
+                      <li>Sans-Serif</li>
+                      <li class="font"><a href="#" data-value="open sans">Open Sans</a></li>
+                      <li class="font"><a href="#" data-value="Source sans pro">Source Sans Pro</a></li>
+                      <li class="font"><a href="#" data-value="Montserrat">Montserrat</a></li>
+                      <li class="font"><a href="#" data-value="lato">Lato</a></li>
+                      <li class="font"><a href="#" data-value="Raleway">Raleway</a></li>
+                      <li class="font"><a href="#" data-value="Roboto">Roboto</a></li>
+                      <li class="font"><a href="#" data-value="Cabin">Cabin</a></li>
+                      <li class="font"><a href="#" data-value="Ubuntu">Ubuntu</a></li>
+                      <li class="font"><a href="#" data-value="Josefin Sans">Josefin Sans</a></li>
+                      <li class="font"><a href="#" data-value="pt sans">PT Sans</a></li>
+                      <li class="font"><a href="#" data-value="ubuntu">Ubuntu</a></li>
+                      <li class="font"><a href="#" data-value="exo">Exo</a></li>
+                      <li class="font"><a href="#" data-value="amaranth">Amaranth</a></li>
+                      <li class="font"><a href="#" data-value="Helvetica, Arial, sans serif">Helvetica</a></li>
+                      <li class="font"><a href="#" data-value="Noto Sans">Noto Sans</a></li>
+                      <li>Serif</li>
+                      <li class="font"><a href="#" data-value="arvo">Arvo</a></li>
+                      <li class="font"><a href="#" data-value="averia serif libre">Averia Serif Libre</a></li>
+                      <li class="font"><a href="#" data-value="PT Serif">PT Serif</a></li>
+                      <li class="font"><a href="#" data-value="Droid Serif">Droid Serif</a></li>
+                      <li class="font"><a href="#" data-value="Josefin Slab">Josefin Slab</a></li>
+                      <li class="font"><a href="#" data-value="Lora">Lora</a></li>
+                      <li class="font"><a href="#" data-value="merriweather">Merriweather</a></li>
+                      <li class="font"><a href="#" data-value="alegreya">Alegreya</a></li>
+                      <li class="font"><a href="#" data-value="Vollkorn">Vollkorn</a></li>
+                      <li class="font"><a href="#" data-value="Playfair Display">Playfair Display</a></li>
+                      <li class="font"><a href="#" data-value="Times new roman">Times New Roman</a></li>
+                      <li class="font"><a href="#" data-value="Helvetica, Arial, sans serif">Noto Serif</a></li>
+                      <li>Monospaced</li>
+                      <li class="font"><a href="#" data-value="source code pro">Source Code Pro</a></li>
+                      <li class="font"><a href="#" data-value="Ubuntu Mono">Ubuntu Mono</a></li>
+                      <li>Display</li>
+                      <li class="font"><a href="#" data-value="Lobster two">Lobster Two</a></li>
+                      <li class="font"><a href="#" data-value="Oswald">Oswald</a></li>
+                      <li class="font"><a href="#" data-value="Pacifico">Pacifico</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="style-group">
+                  <h6>Font Styles</h6>
+                  <div class="btn-group">
+                    <button title="Bold" data-edit="bold"><i class="icon-bold"></i></button>
+                    <button title="Italic" data-edit="italic"><i class="icon-italic"></i></button>
+                    <button title="Underline" data-edit="underline"><i class="icon-underline"></i></button>
+                  </div>
+                </div>
+                <div class="style-group">
+                  <h6>Font Size</h6>
+                  <div class="btn-group font-size">
+                    <button title="Increase Font Size" data-edit="font-up" class="font-ud"><i class="icon-plus"></i></button>
+                    <button title="Decrease Font Size" data-edit="font-down" class="font-ud"><i class="icon-minus"></i></button>
+                    <button title="Custom Font Size" style="padding-bottom:9px;">
+                      <form id="font-size-form" style="margin:0;">
+                        <input type="text" style="margin:0;width:40px" class="font-size-input"/><span>px</span>
+                      </form>
+                    </button>
+                  </div>
+                </div>
+                <div class="style-group">
+                  <h6>Alignment</h6>
+                  <div class="btn-group">
+                    <button title="Align left" data-edit="justifyleft" class="btn"><i class="icon-align-left"></i></button>
+                    <button title="Align center" data-edit="justifycenter" class="btn"><i class="icon-align-center"></i></button>
+                    <button title="Align right" data-edit="justifyright" class="btn"><i class="icon-align-right"></i></button>
+                    <button title="Justify" data-edit="justifyfull" class="btn"><i class="icon-align-justify"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="side-menu">
+      <div class="clib-side-menu">
+        <div class="clib-preview-container">
+          <div class="clib-preview">&nbsp;<img src="{{STATIC_URL}}img/preview.png"/>&nbsp;</div>
+          <div class="add-to-page-container">
+            <button href="#" title="" class="btn btn-warning clib-add pull-right">Add to page</button>
+          </div>
+        </div>
+        <div class="clib-list-container">
+          <ul class="clib-list"></ul>
+        </div>
+      </div>
+      <div style="display: none" class="btn-side-menu">
+        <ul class="unstyled">
+          <li class="side-menu-title">Used</li>
+          <li class="side-menu-item">
+            <div class="btn-preview">
+              <button>add to cart</button><a href="#" title="" class="expand-btn"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,48.00L9.00,48.00 c-4.971,0.00-9.00-4.032-9.00-9.00L0.00,9.00 c0.00-4.971, 4.029-9.00, 9.00-9.00l30.00,0.00 c 4.971,0.00, 9.00,4.029, 9.00,9.00l0.00,30.00 C 48.00,43.968, 43.971,48.00, 39.00,48.00z M 42.00,9.00c0.00-1.656-1.341-3.00-3.00-3.00L9.00,6.00 C 7.341,6.00, 6.00,7.344, 6.00,9.00l0.00,30.00 c0.00,1.659, 1.341,3.00, 3.00,3.00l30.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L42.00,9.00 z M 33.00,27.00L27.00,27.00 l0.00,6.00 c0.00,1.659-1.341,3.00-3.00,3.00s-3.00-1.341-3.00-3.00L21.00,27.00 L15.00,27.00 C 13.341,27.00, 12.00,25.656, 12.00,24.00s 1.341-3.00, 3.00-3.00l6.00,0.00 L21.00,15.00 c0.00-1.656, 1.341-3.00, 3.00-3.00 s 3.00,1.344, 3.00,3.00l0.00,6.00 l6.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00S 34.659,27.00, 33.00,27.00z"></path></svg></a>
+            </div>
+          </li>
+          <li class="side-menu-item">
+            <div class="btn-preview">
+              <button>add to cart</button><a href="#" title="" class="expand-btn"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,48.00L9.00,48.00 c-4.971,0.00-9.00-4.032-9.00-9.00L0.00,9.00 c0.00-4.971, 4.029-9.00, 9.00-9.00l30.00,0.00 c 4.971,0.00, 9.00,4.029, 9.00,9.00l0.00,30.00 C 48.00,43.968, 43.971,48.00, 39.00,48.00z M 42.00,9.00c0.00-1.656-1.341-3.00-3.00-3.00L9.00,6.00 C 7.341,6.00, 6.00,7.344, 6.00,9.00l0.00,30.00 c0.00,1.659, 1.341,3.00, 3.00,3.00l30.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L42.00,9.00 z M 33.00,27.00L27.00,27.00 l0.00,6.00 c0.00,1.659-1.341,3.00-3.00,3.00s-3.00-1.341-3.00-3.00L21.00,27.00 L15.00,27.00 C 13.341,27.00, 12.00,25.656, 12.00,24.00s 1.341-3.00, 3.00-3.00l6.00,0.00 L21.00,15.00 c0.00-1.656, 1.341-3.00, 3.00-3.00 s 3.00,1.344, 3.00,3.00l0.00,6.00 l6.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00S 34.659,27.00, 33.00,27.00z"></path></svg></a>
+            </div>
+          </li>
+          <li class="side-menu-title">Library</li>
+          <li><img id="image1" src="http://images.aviary.com/imagesv5/feather_default.jpg"/></li>
+          <li>
+            <p>
+              <input type="image" src="http://images.aviary.com/images/edit-photo.png" value="Edit Photo" onclick="return launchEditor('image1', 'http://images.aviary.com/imagesv5/feather_default.jpg');"/>
+            </p>
+          </li>
+          <li class="side-menu-item">
+            <div class="btn-preview">
+              <button>add to cart</button><a href="#" title="" class="expand-btn"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,48.00L9.00,48.00 c-4.971,0.00-9.00-4.032-9.00-9.00L0.00,9.00 c0.00-4.971, 4.029-9.00, 9.00-9.00l30.00,0.00 c 4.971,0.00, 9.00,4.029, 9.00,9.00l0.00,30.00 C 48.00,43.968, 43.971,48.00, 39.00,48.00z M 42.00,9.00c0.00-1.656-1.341-3.00-3.00-3.00L9.00,6.00 C 7.341,6.00, 6.00,7.344, 6.00,9.00l0.00,30.00 c0.00,1.659, 1.341,3.00, 3.00,3.00l30.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L42.00,9.00 z M 33.00,27.00L27.00,27.00 l0.00,6.00 c0.00,1.659-1.341,3.00-3.00,3.00s-3.00-1.341-3.00-3.00L21.00,27.00 L15.00,27.00 C 13.341,27.00, 12.00,25.656, 12.00,24.00s 1.341-3.00, 3.00-3.00l6.00,0.00 L21.00,15.00 c0.00-1.656, 1.341-3.00, 3.00-3.00 s 3.00,1.344, 3.00,3.00l0.00,6.00 l6.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00S 34.659,27.00, 33.00,27.00z"></path></svg></a>
+            </div>
+          </li>
+          <li class="side-menu-item">
+            <div class="btn-preview">
+              <button>add to cart</button><a href="#" title="" class="expand-btn"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,48.00L9.00,48.00 c-4.971,0.00-9.00-4.032-9.00-9.00L0.00,9.00 c0.00-4.971, 4.029-9.00, 9.00-9.00l30.00,0.00 c 4.971,0.00, 9.00,4.029, 9.00,9.00l0.00,30.00 C 48.00,43.968, 43.971,48.00, 39.00,48.00z M 42.00,9.00c0.00-1.656-1.341-3.00-3.00-3.00L9.00,6.00 C 7.341,6.00, 6.00,7.344, 6.00,9.00l0.00,30.00 c0.00,1.659, 1.341,3.00, 3.00,3.00l30.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L42.00,9.00 z M 33.00,27.00L27.00,27.00 l0.00,6.00 c0.00,1.659-1.341,3.00-3.00,3.00s-3.00-1.341-3.00-3.00L21.00,27.00 L15.00,27.00 C 13.341,27.00, 12.00,25.656, 12.00,24.00s 1.341-3.00, 3.00-3.00l6.00,0.00 L21.00,15.00 c0.00-1.656, 1.341-3.00, 3.00-3.00 s 3.00,1.344, 3.00,3.00l0.00,6.00 l6.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00S 34.659,27.00, 33.00,27.00z"></path></svg></a>
+            </div>
+          </li>
+          <li class="side-menu-item expanded-item">
+            <div class="expanded-btn-settings">
+              <div class="btn-colors">
+                <div class="titles">
+                  <h6>Border</h6>
+                  <h6>Fill</h6>
+                  <h6>Text</h6>
+                </div>
+                <div class="btn-swatches"><a href="#" title="">
+                    <div class="btn-swatch-border"></div></a><a href="#" title="">
+                    <div class="btn-swatch-fill"></div></a><a href="#" title="">
+                    <div class="btn-swatch-text"></div></a></div>
+                <div class="btn-swatches-hover"><a href="#" title="">
+                    <div class="btn-swatch-border-hover"></div></a><a href="#" title="">
+                    <div class="btn-swatch-fill-hover"></div></a><a href="#" title="">
+                    <div class="btn-swatch-text-hover"></div></a></div>
+                <div class="hover-indicator">
+                  <h6>Hover</h6>
+                </div>
+              </div>
+              <div class="btn-controls">
+                <div class="btn-single-control">
+                  <h6>Radius</h6>
+                  <input/>
+                  <div class="btn-group">
+                    <div class="btn">-</div>
+                    <div class="btn">+</div>
+                  </div>
+                </div>
+                <div class="btn-single-control">
+                  <h6>Border</h6>
+                  <input/>
+                  <div class="btn-group">
+                    <div class="btn">-</div>
+                    <div class="btn">+</div>
+                  </div>
+                </div>
+                <div class="btn-single-control">
+                  <h6>Button size</h6>
+                  <input/>
+                  <div class="btn-group">
+                    <div class="btn">-</div>
+                    <div class="btn">+</div>
+                  </div>
+                </div>
+                <div class="btn-single-control">
+                  <h6>Text size</h6>
+                  <input/>
+                  <div class="btn-group">
+                    <div class="btn">-</div>
+                    <div class="btn">+</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btn-preview">
+              <button>add to cart</button><a href="#" title="" class="expand-btn"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,48.00L9.00,48.00 c-4.971,0.00-9.00-4.032-9.00-9.00L0.00,9.00 c0.00-4.971, 4.029-9.00, 9.00-9.00l30.00,0.00 c 4.971,0.00, 9.00,4.029, 9.00,9.00l0.00,30.00 C 48.00,43.968, 43.971,48.00, 39.00,48.00z M 42.00,9.00c0.00-1.656-1.341-3.00-3.00-3.00L9.00,6.00 C 7.341,6.00, 6.00,7.344, 6.00,9.00l0.00,30.00 c0.00,1.659, 1.341,3.00, 3.00,3.00l30.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L42.00,9.00 z M 33.00,27.00L15.00,27.00 C 13.341,27.00, 12.00,25.656, 12.00,24.00s 1.341-3.00, 3.00-3.00l18.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00S 34.659,27.00, 33.00,27.00z"></path></svg></a>
+            </div>
+          </li>
+          <li class="side-menu-item">
+            <div class="btn-preview">
+              <button>add to cart</button><a href="#" title="" class="expand-btn"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#000000" class="svg replaced-svg"> <path d="M 39.00,48.00L9.00,48.00 c-4.971,0.00-9.00-4.032-9.00-9.00L0.00,9.00 c0.00-4.971, 4.029-9.00, 9.00-9.00l30.00,0.00 c 4.971,0.00, 9.00,4.029, 9.00,9.00l0.00,30.00 C 48.00,43.968, 43.971,48.00, 39.00,48.00z M 42.00,9.00c0.00-1.656-1.341-3.00-3.00-3.00L9.00,6.00 C 7.341,6.00, 6.00,7.344, 6.00,9.00l0.00,30.00 c0.00,1.659, 1.341,3.00, 3.00,3.00l30.00,0.00 c 1.659,0.00, 3.00-1.341, 3.00-3.00L42.00,9.00 z M 33.00,27.00L27.00,27.00 l0.00,6.00 c0.00,1.659-1.341,3.00-3.00,3.00s-3.00-1.341-3.00-3.00L21.00,27.00 L15.00,27.00 C 13.341,27.00, 12.00,25.656, 12.00,24.00s 1.341-3.00, 3.00-3.00l6.00,0.00 L21.00,15.00 c0.00-1.656, 1.341-3.00, 3.00-3.00 s 3.00,1.344, 3.00,3.00l0.00,6.00 l6.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00S 34.659,27.00, 33.00,27.00z"></path></svg></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-bottom: 300px;" class="page-container">
+      <div class="slides-outer">
+        <div id="restore-footer" class="restore-global">
+          <div class="add-slide-controls">
+          </div>
+          <div class="add-slide-container">
+            <button class="add-slide btn">+ Add Section</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="picker-panel">
+      <div class="picker-column">
+        <input id="color" type="text" name="color" value="#123456"/>
+        <div id="colorpicker"></div>
+        <div id="standard-palette"></div>
+      </div>
+      <div class="picker-column picker-column-right">
+        <h4>Used Colors</h4>
+        <div id="used-palette"></div>
+        <h4>Suggested Colors</h4>
+        <div id="suggested-palette"></div>
+      </div>
+    </div>
+    <div id="embed-modal" class="modal hide fade">
+      <div class="modal-header">
+        <h3>Enter Your Code</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please paste the embed code.</p>
+        <textarea style="width:95%;height:150px;" placeholder="Paste your code here..." class="embed-box"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" class="btn cancel-embed">Cancel</button>
+        <button class="btn btn-primary submit-embed">Submit</button>
+      </div>
+    </div>
+    <div id="hf-modal" class="modal hide fade">
+      <div class="modal-header">
+        <h3>Delete This <span class="slide-type">Header</span>?</h3>
+      </div>
+      <div class="modal-body">
+        <p>You can either delete this section from just this page, or from every page in your site. Don't worry, you can always restore it later.</p>
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" class="btn del-cancel">Cancel</button>
+        <button class="btn btn-danger del-site">Delete from my site</button>
+        <button class="btn btn-primary del-page">Delete from this page</button>
+      </div>
+    </div>
+    <div id="pagenav-modal" class="modal hide fade">
+      <div class="modal-header">
+        <h3>You have unsaved changes</h3>
+      </div>
+      <div class="modal-body">
+        <p>I am saving your changes now. Just a sec.</p>
+        <p class="status-text"> </p>
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" class="btn del-cancel">Cancel</button>
+        <button style="display:none;" class="btn btn-primary pagenav-save">Retry Save</button><a href="#" class="btn btn-danger pagenav-proceed">Proceed Without Saving</a>
+      </div>
+    </div>
+    <div id="publish-modal" class="modal hide fade">
+      <div class="modal-header">
+        <button data-dismiss="modal" class="close">&times;</button>
+        <h3>Now publishing your page</h3>
+      </div>
+      <div class="modal-body">
+        <p>Hang on, this might take a few seconds...</p>
+        <div class="publish-spin-wrap do-spin"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="50px" viewbox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" class="svg replaced-svg publish-spinner"> <path d="M 45.00,48.00l-3.00,0.00 l0.00,-4.50 c0.00-0.825-0.672-1.50-1.50-1.50S 39.00,42.675, 39.00,43.50L39.00,48.00 l-6.00,0.00 l0.00,-1.50 c0.00-0.825-0.672-1.50-1.50-1.50S 30.00,45.675, 30.00,46.50L30.00,48.00 L18.00,48.00 l0.00,-1.50 C 18.00,45.675, 17.328,45.00, 16.50,45.00S 15.00,45.675, 15.00,46.50L15.00,48.00 L3.00,48.00 c-1.659,0.00-3.00-1.341-3.00-3.00 L0.00,3.00 c0.00-1.656, 1.341-3.00, 3.00-3.00l42.00,0.00 c 1.659,0.00, 3.00,1.344, 3.00,3.00l0.00,42.00 C 48.00,46.659, 46.659,48.00, 45.00,48.00z M 21.00,42.00c0.00,1.659, 1.341,3.00, 3.00,3.00s 3.00-1.341, 3.00-3.00l0.00,-3.00 c0.00-1.659-1.341-3.00-3.00-3.00s-3.00,1.341-3.00,3.00L21.00,42.00 z M 24.00,33.00c 4.971,0.00, 9.00-4.032, 9.00-9.00c0.00-4.971-4.029-9.00-9.00-9.00S 15.00,19.029, 15.00,24.00C 15.00,28.968, 19.029,33.00, 24.00,33.00z M 45.00,6.00 c0.00-1.656-1.341-3.00-3.00-3.00L6.00,3.00 C 4.341,3.00, 3.00,4.344, 3.00,6.00l0.00,3.00 c0.00,1.656, 1.341,3.00, 3.00,3.00l36.00,0.00 c 1.659,0.00, 3.00-1.344, 3.00-3.00L45.00,6.00 z M 6.00,6.00l21.00,0.00 l0.00,3.00 L6.00,9.00 L6.00,6.00 z M 24.00,18.00 c 3.312,0.00, 6.00,2.688, 6.00,6.00s-2.688,6.00-6.00,6.00S 18.00,27.312, 18.00,24.00S 20.688,18.00, 24.00,18.00z M 24.00,27.00c 1.659,0.00, 3.00-1.344, 3.00-3.00S 25.659,21.00, 24.00,21.00S 21.00,22.344, 21.00,24.00S 22.341,27.00, 24.00,27.00z"></path></svg></div>
+        <p style="visibility:hidden;" class="publish-done">All Done!</p>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+    <div id="cacher" style="visibility:hidden;" class="publish-spin-wrap"></div>
+  </body>
+</html>
