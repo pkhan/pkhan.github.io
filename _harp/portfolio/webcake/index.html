@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebCake</title>
+  <link data-turbolinks-track="true" href="wc-static/application.css" media="all" rel="stylesheet" />
+  <script data-turbolinks-track="true" src="wc-static/application.js"></script>
+
+  <link href='http://fonts.googleapis.com/css?family=Merriweather:300,300italic,400,400italic,700,700italic,' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>  
+
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="container alert-container">
+  </div>
+  <div class="container">
+      <script type="text/javascript">
+require(['app/edit']);
+</script>
+
+<script type="text/javascript" id="server-data">
+window.notebookId = 2;
+window.pageId = 66;
+</script>
+
+</div>
+<div class="edit-container">
+<div class="page-edit">
+  <div class="page-view post">
+    <div class="narrow">
+      <div>
+        <div class="title">
+           <h1 contenteditable="true">Atoms for Peace</h1>
+        </div>
+        <div class="subhead">
+          <h2 contenteditable="true"></h2>
+          <i class="batch" data-icon="&#xF01D;"> SUBTITLE</i>
+        </div>
+      </div>
+    </div>
+
+    <div contenteditable="true" class="body">
+      
+      <!-- CONTENT HERE -->
+      
+    </div>
+  </div>
+  <div id="paste-box" class="paste-box" contenteditable="true"></div>
+  <textarea id="plain-paste-box" class="paste-box"></textarea>
+  <div class="text-menu controls">
+     <div class="inner-buttons">
+        <div class="btn-group">
+          <button class="menu-btn" id="text-heading" disabled="disabled">
+            <span class="glyphicon glyphicon-header"></span>
+          </button>
+          <button class="menu-btn" id="text-concept" disabled="disabled">
+            <i class="batch" data-icon="&#xF12C;"></i>
+          </button>
+          <button class="menu-btn" id="text-example" disabled="disabled">
+            <i class="batch" data-icon="&#xF146;"></i>
+          </button>
+          <button  class="menu-btn" id="add-image" disabled="disabled">
+            <i class="batch" data-icon="&#xF040;"></i>
+          </button>
+          <button class="menu-btn" id="text-list" disabled="disabled">
+            <span class="glyphicon glyphicon-list"></span>
+          </button>
+          <button class="menu-btn" id="text-quote" disabled="disabled">
+            <i class="batch" data-icon="&#xF002;"></i>
+          </button>
+          <button class="menu-btn" id="text-code" disabled="disabled">
+            <i class="batch" data-icon="&#xF063;"></i>
+          </button>
+        </div>
+        <button class="menu-btn" id="text-bold" disabled="disabled">
+          <span class="glyphicon glyphicon-bold"></span>
+        </button>
+        <button class="menu-btn" id="text-italic" disabled="disabled">
+          <span class="glyphicon glyphicon-italic"></span>
+        </button>
+
+        <div id="text-link-outer">
+
+          <button class="menu-btn" id="text-link" disabled="disabled">
+            <i class="batch" data-icon="&#xF143;"></i>
+          </button>
+          <div id="text-link-box" style="display:none;">
+            <input id="text-link-input" type="text" placeholder="http://www.site.com"/>
+            <button id="text-link-confirm">
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+            <button id="text-link-cancel">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </div>
+        </div>
+     </div>
+  </div>
+</div>
+</div>
+
+<div class="sidebar closed-on-mobile">
+  <span class="toggle-slide">
+  <i id="toggle-sidebar" class="batch" data-icon="&#xF02B;"> MENU</i></span>
+
+  <div class="directory"></div>
+  <div class="settings-menu">
+    <a href="/settings">
+      <i class="batch" data-icon="&#xF04C;"></i> Settings
+    </a>
+  </div>
+</div>
+
+<script type="text/javascript">
+var sidebarWidth = 340;
+var toggleState = $(window).width() > (736 + sidebarWidth);
+
+var toggleSidebar = function(state){
+  if(state){
+    // close menu
+    $(".closed-on-mobile").animate({"left" : "-" + sidebarWidth + "px"});
+    $(".edit-container").animate({"left" : "0px"});
+    $(".edit-container").animate({"margin-left" : "0px"}, {queue: false});
+  } else {
+    // open menu
+    $(".closed-on-mobile").animate({"left" : "0px"});
+    $(".edit-container").animate({"left" : sidebarWidth + "px"});
+    $(".edit-container").animate({"margin-left" : sidebarWidth + "px"}, {queue: false});
+  }
+};
+
+
+$("#toggle-sidebar").on("click", function(){
+  toggleSidebar(toggleState);
+  if(false && !toggleState){
+    $(".edit-container").click(function(){
+      toggleSidebar(true);
+      $(this).off("click")
+    });
+  }
+  toggleState = !toggleState;
+});
+</script>
+
+<a href="/" class="webcake-icon webcake-home"></a>
+
+
+
+  </div>
+</div>
+<div class="push"></div>
+
+<!-- Twitter -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</body>
+</html>
