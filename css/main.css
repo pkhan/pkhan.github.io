@@ -1,1 +1,8 @@
 body{font-family:"Open Sans";}
+h1,h2,h3{font-weight:800;}
+h1{font-size:68px;margin-bottom:20px;margin-top:0;}
+h2{margin-top:60px;margin-bottom:30px;}
+a{color:#A209D3;}
+a:hover{text-decoration:none;color:#5A0277;}
+.container{margin-top:100px;margin-bottom:220px;}
+.bigger{font-size:24px;}
