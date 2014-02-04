@@ -1,0 +1,158 @@
+body {
+    background-color: black;
+    color: lime;
+    font-family: "courier new";
+    font-size: 80px;
+}
+div.blackout {
+    background-color:black;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+    visibility: hidden;
+}
+div.blackout.active {
+    visibility: visible;
+}
+.wrong {
+    color: red !important;
+}
+div.letter_box, button.letter_box {
+    border-color: lime;
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    width:100px;
+    height:100px;
+    text-align: center;
+    font-size: 80px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    color: lime;
+    font-family: "courier new";
+    background: none;
+    /*margin-bottom: 8px;*/
+    vertical-align: top;
+    /*visibility: hidden;*/
+    span {
+        line-height: 100px;
+    }
+}
+button.letter_box:active {
+    background-color: white;
+}
+div.box_ext {
+    /*position: relative;
+    top: 50%;
+    margin-top: -180px;
+    height: 300px;
+    /*margin-bottom: 10px;
+    height: 100px;*/
+}
+div.timer {
+    width: 100px;
+    display: inline-block;
+    height: 44px;
+    text-align: center;
+    border-color:lime;
+    border-width: 1px;
+    border-style: solid;
+    background-color: black;
+}
+div.instruction {
+    text-align: center;
+    height: 75px;
+    font-size: 30pt;
+}
+div.lime div.letter_box {
+    border-color: lime;
+    color: lime;
+}
+div.yellow div.letter_box {
+    border-color: #F3F315;
+    color: #F3F315;
+    visibility: hidden;
+}
+div.purple div.letter_box {
+    border-color: #00FFFF;
+    color: #00FFFF;
+    visibility: hidden;
+}
+div.letter_row {
+    height: 60px;
+    text-align: center;
+}
+div.rewind_line {
+    border-color: grey;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+}
+div.timer_ext {
+    text-align: center;
+    position: fixed;
+    height: 44px;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    margin-bottom: 3px;
+}
+div.letter_row div.letter_box.wrong {
+    color: red;
+    border-color: red;
+}
+div.instruction.wrong {
+    color: red;
+    border-color: red;
+}
+div.timer_ext div.timer.wrong {
+    color: red;
+    border-color: red;
+}
+ul.lives {
+    position: fixed;
+    display: block;
+    top: 50%;
+    margin-top: -130px;
+    border-color: lime;
+    border-width: 1px;
+    border-style: solid;
+    color: lime;
+    font-size: 30pt;
+    width: 30px;
+    padding: 0px;
+    text-align: center;
+    height: 260px;
+}
+ul.lives.one {
+    color: red;
+    border-color: red;
+}
+ul.lives.left {
+    left: 3px;
+}
+ul.lives.right {
+    right: 3px;
+}
+ul.lives li {
+    list-style-type: none;
+    height: 50px;
+}
+audio {
+    display: none;
+}
+.display, .num-pad, .status {
+    margin-top: 50px;
+    text-align: center;
+}
+.my-container {
+    width: 640px;
+    margin: 0 auto;
+}
