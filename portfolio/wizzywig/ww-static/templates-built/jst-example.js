@@ -1,0 +1,1 @@
+(function(define){define(["underscore"],function(_){return this.templates=this.templates||{},this.templates.example=function(obj){obj||(obj={});var __p="";with(_.escape,obj)__p+='<a href="#" id="ww-bkg">Blue This</a>\n<a href="#" id="ww-other">Blue H2s</a>';return __p},this.templates})})(_wig.define);
