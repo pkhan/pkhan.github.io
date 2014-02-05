@@ -4,7 +4,7 @@ h1{font-size:68px;margin-bottom:20px;margin-top:0;color:#000;}
 h2{margin-top:60px;margin-bottom:30px;}
 a{color:#4BB5FC;}
 a:hover{text-decoration:none;color:#3173A0;}
-.container{padding-top:80px;margin-bottom:220px;}
+.container{padding-top:100px;margin-bottom:220px;}
 .bigger{font-size:24px;}
 .bio h3{font-weight:normal;}
 .bottom{background-image:url("/img/desert.png");background-size:cover;background-attachment:fixed;height:220px;}
