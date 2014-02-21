@@ -1,16 +1,14 @@
-div(class="image-detail", ng-hide="detailClosed")
-    .images-outer(ng-swipe-left="next()", ng-swipe-right="prior()", ng-click="toggleControls()")
+div.image-detail(ng-class="{animations: !detailClosed}", ng-hide="detailClosed")
+    .images-outer(ng-click="toggleControls()")
         .images-inner.center
             span.vertical-assist
-            img.active-image(ng-src="{{image.src}}")
-            img.prior-image(ng-src="{{priorImage.src}}")
-            img.next-image(ng-src="{{nextImage.src}}")
+            img.display-image(ng-repeat="image in imageCache", ng-src="{{image.src}}")
     .detail-header.detail-controls(ng-show="showControls")
-        a.pull-right.detail-close(href="#", ng-click="hide()") &times;
+        a.pull-right.detail-close(href="", ng-click="hide()") &times;
     .nav.nav-left.detail-controls(ng-show="showControls")
-        a(href="#", ng-click="prior()") &lt;
+        a(href="", ng-click="prior()") &lt;
     .nav.nav-right.detail-controls(ng-show="showControls")
-        a(href="#", ng-click="next()") &gt;
+        a(href="", ng-click="next()") &gt;
     .detail-footer.center.detail-controls(ng-show="showControls")
         button.btn
             span.glyphicon.glyphicon-heart

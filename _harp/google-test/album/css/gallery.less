@@ -84,12 +84,18 @@
 
     .images-outer {
         height: 100%;
+        width: 100%;
+        overflow: hidden;
         .images-inner {
             height: 100%;
             white-space: nowrap;
+            width: 200%;
+            position: relative;
+            left: -100%;
         }
-        img {
-            width: 100%;
+        img.display-image {
+            width: 50%;
+            position: relative;
         }
     }
 

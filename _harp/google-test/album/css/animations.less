@@ -10,65 +10,25 @@
 }
 
 /*Animations for bringing new images in in detail view*/
-.image-detail {
-    .slide-next-add {
+.image-detail.animations {
+    .display-image.ng-enter {
         -webkit-transition: 0.2s linear all;
+        -moz-transition: 0.2s linear all;
         transition: 0.2s linear all;
-        left: -100%;
+        width: 0;
+    }
+    .display-image.ng-enter.ng-enter-active {
+        width: 50%;
     }
 
-    .slide-next-add.slide-next-add-active {
-        left: -200%;
-    }
-
-    .slide-next{
-        left: -200%;
-    }
-
-    .slide-prior-add {
+    .display-image.ng-leave {
         -webkit-transition: 0.2s linear all;
+        -moz-transition: 0.2s linear all;
         transition: 0.2s linear all;
-        left: -200%;
+        width: 50%;
     }
-
-    .slide-prior-add.slide-prior-add-active {
-        left: -100%;
-    }
-
-    .slide-prior{
-        left: -100%;
-    }
-
-    .slide-out-left-add {
-        -webkit-transition: 0.2s linear all;
-        transition: 0.2s linear all;
-        left: 0;
-        position: relative;
-    }
-
-    .slide-out-left-add.slide-out-left-add-active {
-        left: -100%;
-    }
-
-    .slide-out-left{
-        left: -100%;
-        visibility: hidden;
-    }
-
-    .slide-out-right-add {
-        -webkit-transition: 0.2s linear all;
-        transition: 0.2s linear all;
-        position: relative;
-        left: 0;
-    }
-
-    .slide-out-right-add.slide-out-right-add-active {
-        left: 100%;
-    }
-
-    .slide-out-right{
-        left: 100%;
-        visibility: hidden;
+    .display-image.ng-leave.ng-leave-active {
+        width: 0;
     }
 }
 

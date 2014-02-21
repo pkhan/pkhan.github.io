@@ -11,49 +11,36 @@ angular.module('galleryApp.directives', []).
                     {
                         src: 'img/mvcube.jpg',
                         desc: 'Google Cube',
-                        id: 0,
-                        active: false
+                        index: 0
                     },
                     {
                         src: 'img/mvfood.jpg',
                         desc: 'Sandwich Bar',
-                        id: 1,
-                        active: false
+                        index: 1
                     },
                     {
                         src: 'img/nymk.jpg',
                         desc: 'Google NYC Micro-kitchen',
-                        id: 2,
-                        active: false
+                        index: 2
                     },
                     {
                         src: 'img/flower.jpg',
                         desc: 'A flower',
-                        id: 3,
-                        active: false
+                        index: 3
                     },
                     {
                         src: 'img/path.jpg',
                         desc: 'A path',
-                        id: 4,
-                        active: false
+                        index: 4
                     },
                     {
                         src: 'img/doglawn.jpg',
                         desc: 'A dog on a lawn',
-                        id: 5,
-                        active: false
+                        index: 5
                     }
                 ];
                 this.setActive = function(image) {
-                    var i = 0, len = $scope.images.length;
-                    for (; i < len; i++) {
-                        $scope.images[i].active = false;
-                    }
-                    if (image) {
-                        image.active = true;
-                        $scope.index = image.id;
-                    }
+                    $scope.index = image.index;
                 };
                 $scope.index = 0;
                 $scope.detailClosed = true;
@@ -69,8 +56,7 @@ angular.module('galleryApp.directives', []).
             restrict: 'A',
             require: '^gallery',
             scope : {
-                images: '=',
-                detailClosed: '='
+                images: '='
             },
             link: function(scope, el, attrs, galleryController) {
                 scope.showImage = function(image, evt) {
@@ -85,7 +71,7 @@ angular.module('galleryApp.directives', []).
             templateUrl: 'partials/grid.html'
         }
     }])
-    .directive('imagesDetail', ['$animate', function($animate) {
+    .directive('imagesDetail', ['$animate', '$swipe', function($animate, $swipe) {
         return {
             restrict: 'A',
             require: '^gallery',
@@ -97,7 +83,7 @@ angular.module('galleryApp.directives', []).
             link: function(scope, el, attrs, galleryController) {
                 scope.showControls = true;
                 scope.count = 0;
-                scope.cachedImages = [
+                scope.imageCache = [
                     scope.images[scope.count - 1],
                     scope.images[0],
                     scope.images[1]
@@ -112,12 +98,14 @@ angular.module('galleryApp.directives', []).
                 scope.$watch('images', function(newValue, oldValue) {
                     scope.count = newValue.length;
                 });
-                scope.$watch('detailClosed', function() {
-                    scope.cachedImages = [
-                        scope.images[bounder(scope.index - 1, 0, scope.count - 1)],
-                        scope.images[scope.index],
-                        scope.images[bounder(scope.index + 1, 0, scope.count - 1)]
-                    ];
+                scope.$watch('detailClosed', function(newValue, oldValue) {
+                    if(newValue = true) {
+                        angular.copy([
+                            scope.images[bounder(scope.index - 1, 0, scope.count - 1)],
+                            scope.images[scope.index],
+                            scope.images[bounder(scope.index + 1, 0, scope.count - 1)]
+                        ], scope.imageCache);
+                    }
                 });
                 scope.image = scope.images[scope.index];
                 scope.count = scope.images.length;
@@ -131,28 +119,63 @@ angular.module('galleryApp.directives', []).
                     return index;
                 };
                 scope.next = function() {
-                    var index = bounder(scope.index + 1, 0, scope.count - 1);
-                    scope.nextImage = scope.images[index];
-                    removeClasses();
-                    $animate.addClass(nextImage, 'slide-next', function() {
-                        scope.index = index;
-                        scope.$digest()
-                    });
-                    $animate.addClass(activeImage, 'slide-out-left')
+                    scope.index = bounder(scope.index + 1, 0, scope.count - 1);
+                    var nextIndex = bounder(scope.index + 1, 0, scope.count - 1);
+                    var nextImage = scope.images[nextIndex];
+                    scope.imageCache.shift();
+                    scope.imageCache.push(nextImage);
+
                 };
                 scope.prior = function() {
-                    var index = bounder(scope.index - 1, 0, scope.count - 1);
-                    scope.priorImage = scope.images[index];
-                    removeClasses();
-                    $animate.addClass(priorImage, 'slide-prior', function() {
-                        scope.index = index;
-                        scope.$digest();
-                    });
-                    $animate.addClass(activeImage, 'slide-out-right')
+                    scope.index = bounder(scope.index - 1, 0, scope.count - 1);
+                    var priorIndex = bounder(scope.index - 1, 0, scope.count - 1);
+                    var priorImage = scope.images[priorIndex];
+                    scope.imageCache.pop();
+                    scope.imageCache.unshift(priorImage);
                 }
                 scope.toggleControls = function() {
                     scope.showControls = !scope.showControls;
                 }
+
+                //swipe binding
+
+                var inner = el.find('.images-inner');
+                var startX;
+                var threshold = 100; //px after which swipe goes
+
+                var swipeStart = function(pos) {
+                    startX = pos.x;
+                };
+
+                var swipeMove = function(pos) {
+                    inner.css({
+                        'margin-left' : pos.x - startX
+                    });
+                };
+
+                var swipeEnd = function(pos) {
+                    var delta = startX - pos.x;
+                    if (Math.abs(delta) > threshold) {
+                        if (delta < 0) {
+                            scope.prior();
+                        } else {
+                            scope.next();
+                        }
+                    }
+                    scope.$apply();
+                    window.setTimeout(function() {
+                        inner.animate({
+                            'margin-left': 0
+                        }, 120);
+                    }, 100);
+                };
+
+                $swipe.bind(inner, {
+                    start: swipeStart,
+                    move: swipeMove,
+                    end: swipeEnd,
+                    cancel: swipeEnd
+                });
             },
             templateUrl: 'partials/images-detail.html'
         }
