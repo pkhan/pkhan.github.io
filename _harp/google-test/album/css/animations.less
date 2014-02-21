@@ -1,0 +1,96 @@
+/*Fade in Image Detail Menu*/
+.image-detail.ng-hide-remove {
+    -webkit-transition: .5s linear all;
+    transition: .5s linear all;
+    opacity: 0;
+    display: block !important;
+}
+.image-detail.ng-hide-remove img {
+    visibility: hidden;
+}
+
+/*Animations for bringing new images in in detail view*/
+.image-detail {
+    .slide-next-add {
+        -webkit-transition: 0.2s linear all;
+        transition: 0.2s linear all;
+        left: -100%;
+    }
+
+    .slide-next-add.slide-next-add-active {
+        left: -200%;
+    }
+
+    .slide-next{
+        left: -200%;
+    }
+
+    .slide-prior-add {
+        -webkit-transition: 0.2s linear all;
+        transition: 0.2s linear all;
+        left: -200%;
+    }
+
+    .slide-prior-add.slide-prior-add-active {
+        left: -100%;
+    }
+
+    .slide-prior{
+        left: -100%;
+    }
+
+    .slide-out-left-add {
+        -webkit-transition: 0.2s linear all;
+        transition: 0.2s linear all;
+        left: 0;
+        position: relative;
+    }
+
+    .slide-out-left-add.slide-out-left-add-active {
+        left: -100%;
+    }
+
+    .slide-out-left{
+        left: -100%;
+        visibility: hidden;
+    }
+
+    .slide-out-right-add {
+        -webkit-transition: 0.2s linear all;
+        transition: 0.2s linear all;
+        position: relative;
+        left: 0;
+    }
+
+    .slide-out-right-add.slide-out-right-add-active {
+        left: 100%;
+    }
+
+    .slide-out-right{
+        left: 100%;
+        visibility: hidden;
+    }
+}
+
+/*detail controls*/
+.detail-controls.ng-hide-add {
+    -webkit-transition: 0.2s linear all;
+    transition: 0.2s linear all;
+    display: block!important;
+    opacity: 1;
+}
+
+.detail-controls.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+}
+
+.detail-controls.ng-hide-remove {
+    -webkit-transition: 0.5s linear all;
+    transition: 0.1s linear all;
+    display: block!important;
+    opacity: 0;
+}
+
+.detail-controls.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}

@@ -1,0 +1,120 @@
+.img-wrapper {
+    height: 120px;
+    width: 150px;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    overflow: hidden;
+    vertical-align: top;
+    img {
+        height: 100%;
+    }
+}
+.center {
+    text-align: center;
+}
+.header {
+    background-color: rgb(245,245,245);
+    padding-bottom: 20px;
+}
+.vertical-assist {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.expand-wrapper {
+    position: fixed;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.image-detail.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+
+.image-detail {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #DDD;
+    background-color: black;
+
+    a {
+        color: #DDD;
+        font-size: 40px;
+    }
+    a:hover {
+        color: white;
+        text-decoration: none;
+    }
+
+    .detail-header {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        .detail-close {
+            padding-right: 30px;
+            padding-top: 10px;
+        }
+        background-color: rgba(0,0,0,.6);
+    }
+
+    .detail-footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 10px 0;
+        background-color: rgba(0,0,0,.6);
+        button {
+            background: none;
+            color: #DDD;
+            margin: 0 20px;
+            font-size: 20px;
+        }
+        button:hover {
+            color: #FFF;
+        }
+    }
+
+    .images-outer {
+        height: 100%;
+        .images-inner {
+            height: 100%;
+            white-space: nowrap;
+        }
+        img {
+            width: 100%;
+        }
+    }
+
+    .prior-image {
+        position: relative;
+        left: -200%;
+    }
+    .next-image {
+        position: relative;
+        left: 100%;
+    }
+
+    .nav {
+        position: absolute;
+        top: 50%;
+        padding: 0 12px;
+        background-color: rgba(0,0,0,.6);
+        a {
+            line-height: 80px;
+        }
+    }
+    .nav-left {
+        left: 0;
+    }
+    .nav-right {
+        right: 0;
+    }
+}

@@ -1,0 +1,22 @@
+div(class="image-detail", ng-hide="detailClosed")
+    .images-outer(ng-swipe-left="next()", ng-swipe-right="prior()", ng-click="toggleControls()")
+        .images-inner.center
+            span.vertical-assist
+            img.active-image(ng-src="{{image.src}}")
+            img.prior-image(ng-src="{{priorImage.src}}")
+            img.next-image(ng-src="{{nextImage.src}}")
+    .detail-header.detail-controls(ng-show="showControls")
+        a.pull-right.detail-close(href="#", ng-click="hide()") &times;
+    .nav.nav-left.detail-controls(ng-show="showControls")
+        a(href="#", ng-click="prior()") &lt;
+    .nav.nav-right.detail-controls(ng-show="showControls")
+        a(href="#", ng-click="next()") &gt;
+    .detail-footer.center.detail-controls(ng-show="showControls")
+        button.btn
+            span.glyphicon.glyphicon-heart
+        button.btn
+            span.glyphicon.glyphicon-comment
+        button.btn
+            span.glyphicon.glyphicon-plus
+        button.btn
+            span.glyphicon.glyphicon-share-alt

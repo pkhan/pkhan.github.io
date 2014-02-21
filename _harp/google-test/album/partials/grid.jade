@@ -1,0 +1,7 @@
+.grid
+    .row.center.header
+        .col-md-12
+        h2 Image gallery
+    .row.center
+        .img-wrapper(ng-repeat="image in images") 
+            img.grid-image(ng-src="{{image.src}}", ng-click="showImage(image, $event)", alt="{{image.desc}}")
