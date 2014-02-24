@@ -1,5 +1,6 @@
 .image-detail.ng-hide-remove{-webkit-transition:.5s linear all;transition:.5s linear all;opacity:0;display:block !important;}
 .image-detail.ng-hide-remove img{visibility:hidden;}
+.image-detail.ng-hide-remove.ng-hide-remove-active{opacity:1;}
 .image-detail.animations .display-image.ng-enter{-webkit-transition:0.2s linear all;-moz-transition:0.2s linear all;transition:0.2s linear all;width:0;}
 .image-detail.animations .display-image.ng-enter.ng-enter-active{width:50%;}
 .image-detail.animations .display-image.ng-leave{-webkit-transition:0.2s linear all;-moz-transition:0.2s linear all;transition:0.2s linear all;width:50%;}

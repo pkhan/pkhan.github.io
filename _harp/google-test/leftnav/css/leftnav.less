@@ -1,0 +1,143 @@
+@import "variables";
+
+.header {
+    font-size: 20px;
+    padding: @padding;
+    height: 80px;
+    border-bottom: 1px black solid;
+}
+
+span.make-middle {
+    vertical-align: middle;
+}
+
+.outer {
+    overflow: hidden;
+}
+
+.container-fluid {
+    padding: 0 10px;
+    width: 100%;
+    &.scoot {
+        margin-left: @navWidth;
+    }
+    .header {
+        background-color: rgb(238, 238, 238);
+        button {
+            background: none;
+            border: none;
+            color: #666;
+            &.menu {
+                margin-right: 20px;
+            }
+        }
+        span {
+            vertical-align: middle; 
+        }
+    }
+}
+
+.left-nav {
+    background-color: rgb(53, 50 , 51);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: @navWidth;
+    font-size: 20px;
+    color: #DDD;
+    height: 100%;
+    .header {
+
+    }
+    .left-nav-inner {
+        width: @navWidth;
+    }
+    ul.menu-items {
+        list-style-type: none;
+        padding-left: 0;
+        li {
+            position: relative;
+            margin: 10px;
+            padding: 10px;
+            span {
+                vertical-align: middle;
+            }
+            a {
+                color: #DDD;
+                display: block;
+                &:hover {
+                    color: #FFF;
+                    text-decoration: none;
+                }
+            }
+            &.active {
+                a {
+                    color: #FFF;
+                }
+                background-color: #222;
+                .item-caret {
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    right: -10px;
+                    width: 0px;
+                    height: 0px;
+                    border-style: solid;
+                    border-width: 10px 7px 10px 0;
+                    border-color: transparent #ffffff transparent transparent;
+                    margin-top: -10px;
+                }
+            }
+            .item-caret {
+                display: none;
+            }
+        }
+        .glyphicon {
+            font-size: 30px;
+            padding-right: 20px
+        }
+    }
+}
+
+.destination-text {
+    padding: @padding;
+    font-size: 20px;
+    width: 100%;
+    border: none;
+}
+.destination {
+    height: 200px;
+    background-size: cover;
+    margin: 10px 10px;
+    color: #FFF;
+}
+
+.item {
+    background-color: #eee;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    .item-inner {
+        background-color: #FFF;
+        border: 1px #C3C3C3 solid;
+    }
+    .item-image {
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .item-info {
+        display: inline-block;
+        margin-top: 10px;
+        margin-left: 10px;
+        .title {
+            font-weight: 800;
+        }
+        .subtitle {
+            font-style: italic;
+            color: #999;
+        }
+    }
+}

@@ -1,0 +1,24 @@
+!!!
+html(lang="en", ng-app="leftnavApp")
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+        title Travel Planner
+        link(rel="stylesheet", href="/css/bootstrap.min.css")
+        //- link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,100,300,700,500,900', rel='stylesheet', type='text/css')
+        link(rel="stylesheet", href="css/leftnav.css")
+        link(rel="stylesheet", href="css/animations.css")
+
+        script(type="text/javascript", src="/js/angular/angular.js")
+        script(type="text/javascript", src="/js/angular/angular-route.js")
+        script(type="text/javascript", src="/js/angular/angular-touch.js")
+        script(type="text/javascript", src="/js/angular/angular-animate.js")
+        script(type="text/javascript", src="js/controllers.js")
+        script(type="text/javascript", src="js/directives.js")
+        script(type="text/javascript", src="js/app.js")
+
+        //- != partial("../../_shared/_ga")
+    body
+        div(left-nav)
+        div.outer
+            div.container-fluid(ng-view, ng-click="hideNav()", ng-class="{scoot: showNav}", ng-swipe-right="displayNav()", ng-swipe-left="hideNav()")

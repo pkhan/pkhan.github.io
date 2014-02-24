@@ -1,0 +1,6 @@
+.left-nav(ng-show="showNav", class="ng-hide", ng-swipe-left="showNav = false")
+    .left-nav-inner
+        .header 
+            span.make-middle Travel
+        ul.menu-items
+            nav-item(ng-repeat="item in items", item="item")

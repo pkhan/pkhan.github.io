@@ -1,0 +1,18 @@
+div.row.header
+    span(toggle-nav, header-name="headerName")
+    span.pull-right
+        button
+            span.glyphicon.glyphicon-th-list
+        button
+            span.glyphicon.glyphicon-th
+div.row.item(ng-repeat="item in items")
+    .item-inner
+        .item-image(style="background-image:url('{{item.image}}')")
+        .item-info
+            span.title {{item.title}}
+                br
+            span.subtitle(ng-if="item.sub") {{item.sub}}
+                br
+            span.date {{item.date}}
+                br
+    

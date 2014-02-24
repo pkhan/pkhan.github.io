@@ -1,0 +1,9 @@
+div.row.header
+    div(toggle-nav, header-name="headerName")
+div.row
+    input.destination-text(placeholder="Where to?", ng-model="query", stop-event="touchstart")
+div.row.destination(ng-repeat="destination in destinations | filter:query", style="background-image:url(' {{destination.image}}');")
+    span {{ destination.city }}
+    br
+    span {{ destination.range }}
+    

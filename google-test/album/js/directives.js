@@ -2,8 +2,8 @@
 
 /* Directives */
 
-angular.module('galleryApp.directives', []).
-    directive('gallery', function() {
+angular.module('galleryApp.directives', [])
+    .directive('gallery', function() {
         return {
             restrict: 'A',
             controller: ['$scope', '$element', function($scope, $el) {
@@ -88,9 +88,6 @@ angular.module('galleryApp.directives', []).
                     scope.images[0],
                     scope.images[1]
                 ];
-                var nextImage = angular.element(el[0].querySelector('.next-image'));
-                var priorImage = angular.element(el[0].querySelector('.prior-image'));
-                var activeImage = angular.element(el[0].querySelector('.active-image'));
                 var tempImage;
                 scope.hide = function() {
                     scope.detailClosed = true;
@@ -132,10 +129,10 @@ angular.module('galleryApp.directives', []).
                     var priorImage = scope.images[priorIndex];
                     scope.imageCache.pop();
                     scope.imageCache.unshift(priorImage);
-                }
+                };
                 scope.toggleControls = function() {
                     scope.showControls = !scope.showControls;
-                }
+                };
 
                 //swipe binding
 

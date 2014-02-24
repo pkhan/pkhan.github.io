@@ -6,9 +6,11 @@ div.image-detail(ng-class="{animations: !detailClosed}", ng-hide="detailClosed")
     .detail-header.detail-controls(ng-show="showControls")
         a.pull-right.detail-close(href="", ng-click="hide()") &times;
     .nav.nav-left.detail-controls(ng-show="showControls")
-        a(href="", ng-click="prior()") &lt;
+        a(href="", ng-click="prior()") 
+            span.glyphicon.glyphicon-chevron-left
     .nav.nav-right.detail-controls(ng-show="showControls")
-        a(href="", ng-click="next()") &gt;
+        a(href="", ng-click="next()") 
+            span.glyphicon.glyphicon-chevron-right
     .detail-footer.center.detail-controls(ng-show="showControls")
         button.btn
             span.glyphicon.glyphicon-heart
