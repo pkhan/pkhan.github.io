@@ -186,6 +186,9 @@ App.Models.Prediction = App.Model.extend({
             data = data.query.results.predictions;
         }
         if (data.direction) {
+            if (!_.isArray(data.direction.prediction)) {
+                data.direction.prediction = [data.direction.prediction];
+            }
             _.extend(results, {
                 direction_name: data.direction.title,
                 predictions: data.direction.prediction.map(function(prediction) {
@@ -295,6 +298,7 @@ App.Router = Backbone.Router.extend({
                     models.push(current);
                 }
                 current[args[0]] = args[1];
+                current[args[0] + '_name'] = args[1] + ' Loading';
             });
             App.predictions.set(models);
             App.predictions.fetch();
