@@ -10,41 +10,43 @@ body
     .container-fluid
         .row
             .col-xs-12
-                h1 Muni Times Or Whatever
+                h1 Muni Times
+                button.btn.btn-primary#reload-all(type="button") Reload All
         div#prediction-wrapper
         .row.add-new
             .col-xs-12
-                a#add-prediction(href="#") Add Prediction
+                button.btn.btn-success#add-prediction(type="button") Add Prediction
     script#prediction-template(type="text/template")
         .col-xs-12
             h2 {{route_name}}
             h4 {{direction_name}}
             h4 {{stop_name}}
-            a.prediction-remove(href="#") Delete this
             {{#if predictions}}{{else}}
             .prediction-config
-                select.route-list
+                select.form-control.route-list
                     option Routes
                     {{#each routes}}
                     <option {{#ifEquals tag ../route}} selected="selected" {{/ifEquals}} value="{{tag}}"> {{tag}} </option>
                     {{/each}}
-                br
                 {{#if route}}
-                select.direction-list
+                select.form-control.direction-list
                     option Directions
                     {{#each directions}}
                     <option {{#ifEquals tag ../direction}} selected="selected" {{/ifEquals}} value="{{tag}}"> {{title}} </option>
                     {{/each}}
-                br
                 {{/if}}
                 {{#if direction}}
-                select.stop-list
+                select.form-control.stop-list
                     option Stops
                     {{#each stops}}
                     <option {{#ifEquals stopId ../stop}} selected="selected" {{/ifEquals}} value="{{stopId}}"> {{title}} </option>
                     {{/each}}
                 {{/if}}
             {{/if}}
-            .predictions {{#each predictions}} {{time}}, {{/each}}
-            a.refresh(href="#") Refresh
+            .predictions
+                {{#each predictions}}
+                .prediction-time {{time}}
+                {{/each}}
+            button.btn.btn-danger.prediction-remove(type="button") Delete this
+            button.btn.btn-primary.refresh(type="button") Refresh
 

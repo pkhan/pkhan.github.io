@@ -369,6 +369,10 @@ $(document).ready(function() {
         evt.preventDefault();
         App.predictions.add({});
     });
+    $('#reload-all').on('click', function(evt) {
+        evt.preventDefault();
+        App.predictions.fetch();
+    });
 
     Backbone.history.start();
 });
