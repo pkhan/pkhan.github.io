@@ -1,0 +1,20 @@
+{
+  "assets": {
+    "vendor.css": "vendor-109de1d188696b17d3514fbba0641589.css",
+    "vendor.js": "vendor-d4c1b760b20902565f0ef6abf6be8504.js"
+  },
+  "files": {
+    "vendor-109de1d188696b17d3514fbba0641589.css": {
+      "logical_path": "vendor.css",
+      "mtime": "2014-06-18T21:31:15.000Z",
+      "size": 121242,
+      "digest": "109de1d188696b17d3514fbba0641589"
+    },
+    "vendor-d4c1b760b20902565f0ef6abf6be8504.js": {
+      "logical_path": "vendor.js",
+      "mtime": "2014-06-18T18:22:23.000Z",
+      "size": 733898,
+      "digest": "d4c1b760b20902565f0ef6abf6be8504"
+    }
+  }
+}
