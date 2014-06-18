@@ -185,16 +185,25 @@ App.Models.Prediction = App.Model.extend({
         if (data.query) {
             data = data.query.results.predictions;
         }
+        if (data.direction) {
+            _.extend(results, {
+                direction_name: data.direction.title,
+                predictions: data.direction.prediction.map(function(prediction) {
+                    return {
+                        time: moment(Number(prediction.epochTime)).format('hh:mm A'),
+                        minuts: prediction.minutes
+                    };
+                })
+            });
+        } else {
+            _.extend(results, {
+                direction_name: data.dirTitleBecauseNoPredictions,
+                predictions: [ { time: 'No current predictions'} ]
+            });
+        }
         _.extend(results, {
             route_name: data.routeTitle,
             stop_name: data.stopTitle,
-            direction_name: data.direction.title,
-            predictions: data.direction.prediction.map(function(prediction) {
-                return {
-                    time: moment(Number(prediction.epochTime)).format('hh:mm A'),
-                    minuts: prediction.minutes
-                };
-            })
         });
         return results;
     },
