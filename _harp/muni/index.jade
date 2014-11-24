@@ -44,8 +44,13 @@ body
                 {{/if}}
             {{/if}}
             .predictions
+                {{#each prediction_groups}}
+                {{#ifEquals title ../direction_name}}{{else}}
+                h5 {{title}}
+                {{/ifEquals}}
                 {{#each predictions}}
                 .prediction-time {{time}}
+                {{/each}}
                 {{/each}}
             button.btn.prediction-btn.btn-danger.prediction-remove(type="button") Delete
             button.btn.prediction-btn.btn-warning.prediction-edit(type="button") Edit

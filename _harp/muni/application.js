@@ -114,6 +114,13 @@ App.Collections.Stops = App.Collection.extend({
     model: App.Models.Stop
 });
 
+function defaultArray(potential) {
+    if(_.isArray(potential)) {
+        return potential;
+    }
+    return [ potential ];
+}
+
 App.Models.Prediction = App.Model.extend({
     name: 'prediction',
     defaults: function() {
@@ -184,24 +191,58 @@ App.Models.Prediction = App.Model.extend({
             data = data.query.results.predictions;
         }
         if (data.direction) {
-            if (!_.isArray(data.direction.prediction)) {
-                data.direction.prediction = [data.direction.prediction];
-            }
+            var prediction_groups = defaultArray(data.direction);
+            prediction_groups = prediction_groups.map(function(group, i, groups) {
+                return {
+                    title: group.title,
+                    predictions: defaultArray(group.prediction).map(function(prediction) {
+                        return {
+                            time: moment(Number(prediction.epochTime)).format('hh:mm A'),
+                            minutes: prediction.minutes
+                        };
+                    })
+                };
+            });
             _.extend(results, {
-                direction_name: data.direction.title,
-                predictions: data.direction.prediction.map(function(prediction) {
-                    return {
-                        time: moment(Number(prediction.epochTime)).format('hh:mm A'),
-                        minuts: prediction.minutes
-                    };
-                })
+                prediction_groups: prediction_groups,
+                direction_name: prediction_groups[0].title
             });
         } else {
             _.extend(results, {
-                direction_name: data.dirTitleBecauseNoPredictions,
-                predictions: [ { time: 'No current predictions'} ]
+                prediction_groups: [{
+                    title: data.dirTitleBecauseNoPredictions,
+                    predictions: [ { time: 'No current predictions'} ]
+                }]
             });
         }
+
+        // if (data.direction) {
+        //     if (_.isArray(data.direction)) {
+        //         prediction_groups = data.direction.map(function(group) {
+        //             return {
+        //                 title: group.title,
+        //                 predictions: group.prediction
+        //             };
+        //         });
+        //     }
+        //     if (!_.isArray(data.direction.prediction)) {
+        //         data.direction.prediction = [data.direction.prediction];
+        //     }
+        //     _.extend(results, {
+        //         direction_name: data.direction.title,
+        //         predictions: data.direction.prediction.map(function(prediction) {
+        //             return {
+        //                 time: moment(Number(prediction.epochTime)).format('hh:mm A'),
+        //                 minuts: prediction.minutes
+        //             };
+        //         })
+        //     });
+        // } else {
+        //     _.extend(results, {
+        //         direction_name: data.dirTitleBecauseNoPredictions,
+        //         predictions: [ { time: 'No current predictions'} ]
+        //     });
+        // }
         _.extend(results, {
             route_name: data.routeTitle,
             stop_name: data.stopTitle,
@@ -367,8 +408,10 @@ $(document).ready(function() {
     App.Views.PredictionList = Backbone.Marionette.CollectionView.extend({
         itemView: App.Views.Prediction,
         collectionEvents: {
-            'sync': function () {
-                this.render();
+            'sync': function (model) {
+                if(model === this.collection) {
+                    this.render();
+                }
             }
         }
     });
