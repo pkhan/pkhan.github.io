@@ -13,11 +13,15 @@ select.form-control {
 }
 
 button.btn {
-    width: 110px;
+    width: 150px;
+}
+
+button.prediction-btn {
+    width: 100px
 }
 
 button.prediction-remove, .prediction-edit {
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .predictions {

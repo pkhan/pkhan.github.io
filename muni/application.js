@@ -61,7 +61,7 @@ var yqlParse = function(data, options) {
     return {};
 };
 
-App.Model = Backbone.Model.extend({
+var yqlMixin = {
     sync: yqlSync,
     name: '',
     params: function() {
@@ -69,17 +69,11 @@ App.Model = Backbone.Model.extend({
     },
     getParams: getParams,
     parse: yqlParse
-});
+};
 
-App.Collection = Backbone.Collection.extend({
-    sync: yqlSync,
-    name: '',
-    params: function() {
-        return {};
-    },
-    getParams: getParams,
-    parse: yqlParse
-});
+App.Model = Backbone.Model.extend(yqlMixin);
+
+App.Collection = Backbone.Collection.extend(yqlMixin);
 
 App.Models = {};
 App.Collections = {};

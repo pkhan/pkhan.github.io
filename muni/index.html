@@ -5,4 +5,4 @@
 {{/each}}</select>{{/if}}
 {{#if direction}}<select class="form-control stop-list"><option>Stops</option>{{#each stops}}
 <option {{#ifEquals stopId ../stop}} selected="selected" {{/ifEquals}} value="{{stopId}}"> {{title}} </option>
-{{/each}}</select>{{/if}}</div>{{/if}}<div class="predictions">{{#each predictions}}<div class="prediction-time">{{time}}</div>{{/each}}</div><button type="button" class="btn btn-danger prediction-remove">Delete this</button><button type="button" class="btn btn-warning prediction-edit">Edit</button><button type="button" class="btn btn-primary refresh">Refresh</button></div></script></body>
+{{/each}}</select>{{/if}}</div>{{/if}}<div class="predictions">{{#each predictions}}<div class="prediction-time">{{time}}</div>{{/each}}</div><button type="button" class="btn prediction-btn btn-danger prediction-remove">Delete</button><button type="button" class="btn prediction-btn btn-warning prediction-edit">Edit</button><button type="button" class="btn prediction-btn btn-primary refresh">Refresh</button></div></script></body>
