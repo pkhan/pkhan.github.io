@@ -21,7 +21,7 @@ body
             h2 {{route_name}}
             h4 {{direction_name}}
             h4 {{stop_name}}
-            {{#if predictions}}{{else}}
+            {{#if editing}}
             .prediction-config
                 select.form-control.route-list
                     option Routes
@@ -48,5 +48,6 @@ body
                 .prediction-time {{time}}
                 {{/each}}
             button.btn.btn-danger.prediction-remove(type="button") Delete this
+            button.btn.btn-warning.prediction-edit(type="button") Edit
             button.btn.btn-primary.refresh(type="button") Refresh
 

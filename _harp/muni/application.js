@@ -129,7 +129,8 @@ App.Models.Prediction = App.Model.extend({
             stop: null,
             route_name: 'Select a Route',
             direction_name: 'And a Direction',
-            stop_name: 'And a Stop'
+            stop_name: 'And a Stop',
+            editing: true
         };
     },
     initialize: function() {
@@ -166,10 +167,13 @@ App.Models.Prediction = App.Model.extend({
         });
         this.trigger('sync', this);
     },
-    setStop: function(stopId) {
+    setStop: function(stopId, silent) {
         this.stop = this.route.stops.get(stopId);
         this.set('stop', stopId);
         this.set('stop_name', this.stop.get('title'));
+        if(!silent){
+            this.set('editing', false);
+        }
         this.trigger('complete', this);
         this.fetch();
     },
@@ -264,7 +268,7 @@ App.Collections.Predictions = App.Collection.extend({
         return App.Collection.prototype.fetch.apply(this, arguments);
     },
     updateHash: function() {
-        var hashString = '';
+        var hashString = '?';
         var joinChar = '&';
         var first = true;
         this.forEach(function(prediction) {
@@ -282,9 +286,16 @@ App.Collections.Predictions = App.Collection.extend({
 
 App.Router = Backbone.Router.extend({
     routes: {
-        '*muniRoutes' : 'init'
+        '(?)*muniRoutes' : 'init'
+    },
+    shared: function() {
+
     },
     init: function(muniRoutes) {
+        if(App.reNav) {
+            App.router.navigate('?' + muniRoutes);
+            App.reNav = false;
+        }
         App.predictions = new App.Collections.Predictions();
 
         if (muniRoutes) {
@@ -299,6 +310,7 @@ App.Router = Backbone.Router.extend({
                 }
                 current[args[0]] = args[1];
                 current[args[0] + '_name'] = args[1] + ' Loading';
+                current.editing = false;
             });
             App.predictions.set(models);
             App.predictions.fetch();
@@ -348,6 +360,8 @@ $(document).ready(function() {
             },
             'click .prediction-edit' : function(evt) {
                 evt.preventDefault();
+                this.model.set('editing', true);
+                this.render();
             },
             'click .prediction-remove' : function(evt) {
                 evt.preventDefault()
@@ -374,5 +388,9 @@ $(document).ready(function() {
         App.predictions.fetch();
     });
 
-    Backbone.history.start();
+    App.reNav = false;
+    if(window.location.hash.length > 0) {
+        App.reNav = true;
+    }
+    Backbone.history.start({pushState: true, root: '/muni/'});
 });
