@@ -53,6 +53,10 @@ body
                 {{/each}}
                 {{/each}}
             button.btn.prediction-btn.btn-danger.prediction-remove(type="button") Delete
+            {{#if editing}}
+            button.btn.prediction-btn.prediction-cancel-edit(type="button") Cancel
+            {{else}}
             button.btn.prediction-btn.btn-warning.prediction-edit(type="button") Edit
+            {{/if}}
             button.btn.prediction-btn.btn-primary.refresh(type="button") Refresh
 

@@ -8,4 +8,4 @@
 {{/each}}</select>{{/if}}</div>{{/if}}<div class="predictions">{{#each prediction_groups}}
 {{#ifEquals title ../direction_name}}{{else}}<h5>{{title}}</h5>{{/ifEquals}}
 {{#each predictions}}<div class="prediction-time">{{time}}</div>{{/each}}
-{{/each}}</div><button type="button" class="btn prediction-btn btn-danger prediction-remove">Delete</button><button type="button" class="btn prediction-btn btn-warning prediction-edit">Edit</button><button type="button" class="btn prediction-btn btn-primary refresh">Refresh</button></div></script></body>
+{{/each}}</div><button type="button" class="btn prediction-btn btn-danger prediction-remove">Delete</button>{{#if editing}}<button type="button" class="btn prediction-btn prediction-cancel-edit">Cancel</button>{{else}}<button type="button" class="btn prediction-btn btn-warning prediction-edit">Edit</button>{{/if}}<button type="button" class="btn prediction-btn btn-primary refresh">Refresh</button></div></script></body>

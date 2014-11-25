@@ -20,8 +20,11 @@ button.prediction-btn {
     width: 100px
 }
 
-button.prediction-remove, .prediction-edit {
+button.prediction-btn {
     margin-right: 10px;
+    &:last-child {
+        margin-right: 0;
+    }
 }
 
 .predictions {

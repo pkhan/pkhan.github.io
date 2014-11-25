@@ -178,6 +178,29 @@ App.Models.Prediction = App.Model.extend({
         this.trigger('complete', this);
         this.fetch();
     },
+    resurrect: function() {
+        // Rebuild route info if necessary (for editing)
+        var self = this;
+        var routeTag = this.get('route');
+        var directionId = this.get('direction');
+        var stopId = this.get('stop');
+        if (!(routeTag && directionId && stopId)) {
+            return;
+        }
+        var deferreds = [];
+        if (this.routes.length == 0) {
+            deferreds.push(this.routes.fetch());
+        }
+        if (this.route) {
+            return;
+        }
+        $.when.apply($, deferreds).then(function() {
+            self.route = self.routes.get(routeTag);
+            self.route.fetch().done(function() {
+                self.trigger('sync', self);
+            });
+        });
+    },
     params: function() {
         return {
             route: this.get('route'),
@@ -215,34 +238,6 @@ App.Models.Prediction = App.Model.extend({
                 }]
             });
         }
-
-        // if (data.direction) {
-        //     if (_.isArray(data.direction)) {
-        //         prediction_groups = data.direction.map(function(group) {
-        //             return {
-        //                 title: group.title,
-        //                 predictions: group.prediction
-        //             };
-        //         });
-        //     }
-        //     if (!_.isArray(data.direction.prediction)) {
-        //         data.direction.prediction = [data.direction.prediction];
-        //     }
-        //     _.extend(results, {
-        //         direction_name: data.direction.title,
-        //         predictions: data.direction.prediction.map(function(prediction) {
-        //             return {
-        //                 time: moment(Number(prediction.epochTime)).format('hh:mm A'),
-        //                 minuts: prediction.minutes
-        //             };
-        //         })
-        //     });
-        // } else {
-        //     _.extend(results, {
-        //         direction_name: data.dirTitleBecauseNoPredictions,
-        //         predictions: [ { time: 'No current predictions'} ]
-        //     });
-        // }
         _.extend(results, {
             route_name: data.routeTitle,
             stop_name: data.stopTitle,
@@ -395,7 +390,13 @@ $(document).ready(function() {
             },
             'click .prediction-edit' : function(evt) {
                 evt.preventDefault();
+                this.model.resurrect();
                 this.model.set('editing', true);
+                this.render();
+            },
+            'click .prediction-cancel-edit' : function(evt) {
+                evt.preventDefault();
+                this.model.set('editing', false);
                 this.render();
             },
             'click .prediction-remove' : function(evt) {
