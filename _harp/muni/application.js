@@ -111,7 +111,17 @@ App.Models.Stop = App.Model.extend({
 });
 
 App.Collections.Stops = App.Collection.extend({
-    model: App.Models.Stop
+    model: App.Models.Stop,
+    getValidStops: function(validStops) {
+        var self = this;
+        var tagToId = {};
+        this.forEach(function(stop) {
+            tagToId[stop.get('tag')] = stop.id;
+        });
+        return new App.Collections.Stops(validStops.map(function(tag) {
+            return self.get(tagToId[tag]);
+        }))
+    }
 });
 
 function defaultArray(potential) {
@@ -178,6 +188,12 @@ App.Models.Prediction = App.Model.extend({
         this.trigger('complete', this);
         this.fetch();
     },
+    nextStop: function() {
+
+    },
+    prevStop: function() {
+
+    },
     resurrect: function() {
         // Rebuild route info if necessary (for editing)
         var self = this;
@@ -196,10 +212,11 @@ App.Models.Prediction = App.Model.extend({
         }
         $.when.apply($, deferreds).then(function() {
             self.route = self.routes.get(routeTag);
-            self.route.fetch().done(function() {
+            deferreds.push(self.route.fetch().done(function() {
                 self.trigger('sync', self);
-            });
+            }));
         });
+        return deferreds;
     },
     params: function() {
         return {
@@ -249,15 +266,10 @@ App.Models.Prediction = App.Model.extend({
         data.routes = this.routes.toJSON();
         if (this.route) {
             data.directions = this.route.get('direction');
-            var stops = this.route.get('stop');
+            var stops = this.route.stops.toJSON();
             if (this.direction) {
                 var validStops = _.pluck(this.direction.stop, 'tag');
-                stops = _.filter(stops, function(stop) {
-                    return validStops.indexOf(stop.tag) >= 0;
-                });
-                stops = _.sortBy(stops, function(stop) {
-                    return validStops.indexOf(stop.tag);
-                });
+                stops = this.route.stops.getValidStops(validStops).toJSON();
             }
             data.stops = stops;
         }
