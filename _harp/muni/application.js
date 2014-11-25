@@ -189,10 +189,24 @@ App.Models.Prediction = App.Model.extend({
         this.fetch();
     },
     nextStop: function() {
-
+        this._changeStop(1);
+        this.trigger('next-stop');
     },
     prevStop: function() {
-
+        this._changeStop(-1);
+        this.trigger('prev-stop');
+    },
+    _changeStop: function(dir) {
+        var self = this;
+        $.when(this.resurrect()).then(function() {
+            if (!(self.direction && self.stop)) { return; }
+            var validStops = _.pluck(self.direction.stop, 'tag');
+            var stops = self.route.stops.getValidStops(validStops);
+            var currentIndex = stops.indexOf(self.stop);
+            var newStop = stops.at(currentIndex + dir);
+            if (!newStop) { return; }
+            self.setStop(newStop.id);
+        });
     },
     resurrect: function() {
         // Rebuild route info if necessary (for editing)
@@ -203,20 +217,27 @@ App.Models.Prediction = App.Model.extend({
         if (!(routeTag && directionId && stopId)) {
             return;
         }
+        var deferred = new $.Deferred();
         var deferreds = [];
         if (this.routes.length == 0) {
             deferreds.push(this.routes.fetch());
         }
         if (this.route) {
-            return;
+            $.when.apply($, deferreds).then(function() {
+                deferred.resolve();
+            });
+            return deferred;
         }
         $.when.apply($, deferreds).then(function() {
             self.route = self.routes.get(routeTag);
-            deferreds.push(self.route.fetch().done(function() {
+            self.route.fetch().done(function() {
+                self.direction = _.findWhere(self.route.get('direction'), {tag: directionId});
+                self.stop = self.route.stops.get(stopId);
                 self.trigger('sync', self);
-            }));
+                deferred.resolve();
+            });
         });
-        return deferreds;
+        return deferred;
     },
     params: function() {
         return {
@@ -381,10 +402,16 @@ $(document).ready(function() {
         modelEvents: {
             'sync': 'render'
         },
+        softDrag: false,
+        hardDrag: false,
+        dragging: false,
+        hardDragThreshhold: 20,
+        swipeThreshhold: 100,
         ui: {
             'routeList' : '.route-list',
             'directionList' : '.direction-list',
-            'stopList' : '.stop-list'
+            'stopList' : '.stop-list',
+            'stopLabel': '.stop-interior'
         },
         events: {
             'change @ui.routeList' : function(evt) {
@@ -414,8 +441,58 @@ $(document).ready(function() {
             'click .prediction-remove' : function(evt) {
                 evt.preventDefault()
                 this.model.collection.remove(this.model);
+            },
+            'touchstart': 'dragStart',
+            'touchmove': 'dragMove',
+            'touchend': 'dragEnd',
+        },
+        dragStart: function(evt) {
+            this.dragging = true;
+            this.softDrag = true;
+            this.startX = evt.originalEvent.touches[0].pageX;
+            this.startY = evt.originalEvent.touches[0].pageY;
+        },
+        dragMove: function(evt) {
+            var xDiff = evt.originalEvent.touches[0].pageX - this.startX;
+            var yDiff = evt.originalEvent.touches[0].pageY - this.startY;
+            if (this.softDrag) {
+                if (Math.abs(yDiff) > this.hardDragThreshhold) {
+                    this.softDrag = false;
+                    this.hardDrag = false;
+                    return true;
+                }
+                if (Math.abs(xDiff) > this.hardDragThreshhold) {
+                    this.hardDrag = true;
+                }
             }
+            if (this.hardDrag) {
+                this.ui.stopLabel.css({'left': xDiff});
+                // evt.preventDefault();
+                if (Math.abs(xDiff) > this.swipeThreshhold) {
+                    this.dragEnd();
+                    this.doSwipe(xDiff > 0);
+                }
+            }
+        },
+        dragEnd: function() {
+            this.softDrag = false;
+            this.hardDrag = false;
+            this.ui.stopLabel.css({'left': 0});
+        },
+        doSwipe: function(right) {
+            if (right) {
+                this.ui.stopLabel.animate({'left': '100%'});
+                this.model.prevStop();
+            } else {
+                this.ui.stopLabel.animate({'left': '-100%'});
+                this.model.nextStop();
+            }
+            this.ui.stopLabel.css({
+                'visibility': 'hidden',
+                'left'      : 0
+            });
         }
+
     });
 
     App.Views.PredictionList = Backbone.Marionette.CollectionView.extend({

@@ -32,10 +32,19 @@ button.prediction-btn {
     margin-bottom: 20px;
 }
 
+.stop-exterior {
+    overflow: hidden;
+}
+
+.stop-interior {
+    position: relative;
+    left: 0;
+}
+
 .prediction-time {
     display: inline-block;
     font-size: 20px;
-    margin-right: 20px;
+    margin-right: 10px;
     background: #DDD;
     padding: 2px 8px;
     border-radius: 2px;

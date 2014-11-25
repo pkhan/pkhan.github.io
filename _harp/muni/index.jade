@@ -20,7 +20,8 @@ body
         .col-xs-12
             h2 {{route_name}}
             h4 {{direction_name}}
-            h4 {{stop_name}}
+            h4.stop-exterior
+                span.stop-interior {{stop_name}}
             {{#if editing}}
             .prediction-config
                 select.form-control.route-list
