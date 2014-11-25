@@ -204,7 +204,10 @@ App.Models.Prediction = App.Model.extend({
             var stops = self.route.stops.getValidStops(validStops);
             var currentIndex = stops.indexOf(self.stop);
             var newStop = stops.at(currentIndex + dir);
-            if (!newStop) { return; }
+            if (!newStop) {
+                self.trigger('no-next-stop');
+                return;
+            }
             self.setStop(newStop.id);
         });
     },
@@ -351,9 +354,6 @@ App.Router = Backbone.Router.extend({
     routes: {
         '(?)*muniRoutes' : 'init'
     },
-    shared: function() {
-
-    },
     init: function(muniRoutes) {
         if(App.reNav) {
             App.router.navigate('?' + muniRoutes);
@@ -400,7 +400,10 @@ $(document).ready(function() {
         template: App.templates['prediction-template'],
         className: 'row',
         modelEvents: {
-            'sync': 'render'
+            'sync': 'render',
+            'no-next-stop': function() {
+                this.render();
+            }
         },
         softDrag: false,
         hardDrag: false,
@@ -467,29 +470,42 @@ $(document).ready(function() {
             }
             if (this.hardDrag) {
                 this.ui.stopLabel.css({'left': xDiff});
-                // evt.preventDefault();
                 if (Math.abs(xDiff) > this.swipeThreshhold) {
-                    this.dragEnd();
+                    this.dragEnd(true);
                     this.doSwipe(xDiff > 0);
                 }
             }
         },
-        dragEnd: function() {
+        dragEnd: function(keepPosition) {
             this.softDrag = false;
             this.hardDrag = false;
-            this.ui.stopLabel.css({'left': 0});
+            if (keepPosition !== true) {
+                this.ui.stopLabel.css({'left': 0});
+            }
         },
         doSwipe: function(right) {
+            var self = this;
+            var stopLabel = this.ui.stopLabel;
+            var width = stopLabel.parent().width();
+            var props = {
+                'left': (-width) + 'px'
+            };
             if (right) {
-                this.ui.stopLabel.animate({'left': '100%'});
+                props['left'] = width + 'px'
                 this.model.prevStop();
             } else {
-                this.ui.stopLabel.animate({'left': '-100%'});
                 this.model.nextStop();
             }
-            this.ui.stopLabel.css({
-                'visibility': 'hidden',
-                'left'      : 0
+            function postAnimation() {
+                stopLabel.css({
+                    'visibility': 'hidden'
+                });
+                stopLabel.css({
+                    'left': 0
+                });
+            }
+            stopLabel.animate(props, {
+                done: postAnimation
             });
         }
 
