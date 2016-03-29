@@ -1,4 +1,4 @@
-!!!
+doctype
 head
     title Muni Stops
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
@@ -22,42 +22,42 @@ body
             h4 {{direction_name}}
             h4.stop-exterior
                 span.stop-interior {{stop_name}}
-            {{#if editing}}
+            | {{#if editing}}
             .prediction-config
                 select.form-control.route-list
                     option Routes
-                    {{#each routes}}
+                    | {{#each routes}}
                     <option {{#ifEquals tag ../route}} selected="selected" {{/ifEquals}} value="{{tag}}"> {{tag}} </option>
-                    {{/each}}
-                {{#if route}}
+                    | {{/each}}
+                | {{#if route}}
                 select.form-control.direction-list
                     option Directions
-                    {{#each directions}}
+                    | {{#each directions}}
                     <option {{#ifEquals tag ../direction}} selected="selected" {{/ifEquals}} value="{{tag}}"> {{title}} </option>
-                    {{/each}}
-                {{/if}}
-                {{#if direction}}
+                    | {{/each}}
+                | {{/if}}
+                | {{#if direction}}
                 select.form-control.stop-list
                     option Stops
-                    {{#each stops}}
+                    | {{#each stops}}
                     <option {{#ifEquals stopId ../stop}} selected="selected" {{/ifEquals}} value="{{stopId}}"> {{title}} </option>
-                    {{/each}}
-                {{/if}}
-            {{/if}}
+                    | {{/each}}
+                | {{/if}}
+            | {{/if}}
             .predictions
-                {{#each prediction_groups}}
-                {{#ifEquals title ../direction_name}}{{else}}
+                | {{#each prediction_groups}}
+                | {{#ifEquals title ../direction_name}}{{else}}
                 h5 {{title}}
-                {{/ifEquals}}
-                {{#each predictions}}
+                | {{/ifEquals}}
+                | {{#each predictions}}
                 .prediction-time {{time}}
-                {{/each}}
-                {{/each}}
+                | {{/each}}
+                | {{/each}}
             button.btn.prediction-btn.btn-danger.prediction-remove(type="button") Delete
-            {{#if editing}}
+            | {{#if editing}}
             button.btn.prediction-btn.prediction-cancel-edit(type="button") Cancel
-            {{else}}
+            | {{else}}
             button.btn.prediction-btn.btn-warning.prediction-edit(type="button") Edit
-            {{/if}}
+            | {{/if}}
             button.btn.prediction-btn.btn-primary.refresh(type="button") Refresh
 
