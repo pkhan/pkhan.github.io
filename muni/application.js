@@ -79,6 +79,29 @@ App.Models = {};
 App.Collections = {};
 App.Views = {};
 
+App.agencyRoutes = {}
+App.agencies = [
+    {
+        value: 'sf-muni',
+        name: 'SF Muni'
+    },
+    {
+        value: 'actransit',
+        name: 'AC Transit'
+    },
+];
+
+App.routesFor = function(agency) {
+    if(!agency) {
+        agency = 'sf-muni';
+    }
+    var routes = this.agencyRoutes[agency];
+    if(!routes) {
+        routes = this.agencyRoutes[agency] = new App.Collections.Routes(null, {agency: agency});
+    }
+    return routes;
+};
+
 App.Models.Route = App.Model.extend({
     idAttribute: 'tag',
     name: 'route',
@@ -88,11 +111,13 @@ App.Models.Route = App.Model.extend({
     },
     params: function() {
         return {
-            route: this.get('tag')
-        }
+            route: this.get('tag'),
+            agency: this.get('agency')
+        };
     },
     parse: function() {
         data = App.Model.prototype.parse.apply(this, arguments);
+        data.direction = defaultArray(data.direction);
         if (data.stop) {
             this.stops.reset(data.stop);
             this.stops.invoke('set', { route: data.tag});
@@ -103,7 +128,23 @@ App.Models.Route = App.Model.extend({
 
 App.Collections.Routes = App.Collection.extend({
     model: App.Models.Route,
-    name: 'route'
+    name: 'route',
+    initialize: function(models, opts) {
+        if(opts) {
+            this.agency = opts.agency;
+        }
+    },
+    parse: function() {
+        var data = App.Collection.prototype.parse.apply(this, arguments);
+        var self = this;
+        data.forEach(function(model) {
+            model.agency = self.agency;
+        });
+        return data;
+    },
+    params: function() {
+        return {agency: this.agency};
+    }
 });
 
 App.Models.Stop = App.Model.extend({
@@ -141,15 +182,21 @@ App.Models.Prediction = App.Model.extend({
             route_name: 'Select a Route',
             direction_name: 'And a Direction',
             stop_name: 'And a Stop',
-            editing: true
+            editing: true,
+            agency: 'sf-muni'
         };
     },
     initialize: function() {
         var prediction = this;
-        if (!App.routes) {
-            App.routes = new App.Collections.Routes();
-        }
-        this.routes = App.routes;
+        this.updateRoutes();
+    },
+    setAgency: function(agency) {
+        this.set('agency', agency);
+        this.updateRoutes();
+    },
+    updateRoutes: function() {
+        var prediction = this;
+        this.routes = App.routesFor(this.get('agency'));
         if (this.routes.length == 0 && !this.get('route')) {
             this.routes.fetch().done(function() {
                 prediction.trigger('sync', prediction);
@@ -166,7 +213,12 @@ App.Models.Prediction = App.Model.extend({
             stop: null
         });
         this.route.fetch().done(function() {
-            prediction.trigger('sync', prediction);
+            var directions = prediction.route.get('direction');
+            if(directions.length == 1) {
+                prediction.setDirection(directions[0].tag);
+            } else {
+                prediction.trigger('sync', prediction);
+            }
         });
     },
     setDirection: function(direction) {
@@ -246,7 +298,8 @@ App.Models.Prediction = App.Model.extend({
         return {
             route: this.get('route'),
             direction: this.get('direction'),
-            stop: this.get('stop')
+            stop: this.get('stop'),
+            agency: this.get('agency')
         };
     },
     parse: function(data, options) {
@@ -288,6 +341,7 @@ App.Models.Prediction = App.Model.extend({
     toJSON: function() {
         data = App.Model.prototype.toJSON.apply(this);
         data.routes = this.routes.toJSON();
+        data.agencies = App.agencies;
         if (this.route) {
             data.directions = this.route.get('direction');
             var stops = this.route.stops.toJSON();
@@ -343,6 +397,7 @@ App.Collections.Predictions = App.Collection.extend({
             }
             first = false;
             hashString += 'route=' + prediction.get('route');
+            hashString += '&agency=' + prediction.get('agency');
             hashString += '&direction=' + prediction.get('direction');
             hashString += '&stop=' + prediction.get('stop');
         });
@@ -414,9 +469,15 @@ $(document).ready(function() {
             'routeList' : '.route-list',
             'directionList' : '.direction-list',
             'stopList' : '.stop-list',
-            'stopLabel': '.stop-interior'
+            'stopLabel': '.stop-interior',
+            'agencyList': '.agency-list',
+            'nextStop': '.next-stop',
+            'previousStop': '.prev-stop',
         },
         events: {
+            'change @ui.agencyList' : function(evt) {
+                this.model.setAgency(this.ui.agencyList.val());
+            },
             'change @ui.routeList' : function(evt) {
                 this.model.setRoute(this.ui.routeList.val());
             },
@@ -445,9 +506,8 @@ $(document).ready(function() {
                 evt.preventDefault()
                 this.model.collection.remove(this.model);
             },
-            'touchstart': 'dragStart',
-            'touchmove': 'dragMove',
-            'touchend': 'dragEnd',
+            'click @ui.nextStop': 'nextStop',
+            'click @ui.previousStop': 'prevStop',
         },
         dragStart: function(evt) {
             this.dragging = true;
@@ -482,6 +542,12 @@ $(document).ready(function() {
             if (keepPosition !== true) {
                 this.ui.stopLabel.css({'left': 0});
             }
+        },
+        nextStop: function() {
+            this.model.nextStop();
+        },
+        prevStop: function() {
+            this.model.prevStop();
         },
         doSwipe: function(right) {
             var self = this;
