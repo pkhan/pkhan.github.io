@@ -18,12 +18,20 @@ body
                 button.btn.btn-success#add-prediction(type="button") Add Prediction
     script#prediction-template(type="text/template")
         .col-xs-12
-            h2 {{route_name}}
+            h2 
+                span.prev-stop.stop-navigation &olt;
+                span.route-name-interior {{route_name}}
+                span.next-stop.stop-navigation &ogt;
             h4 {{direction_name}}
             h4.stop-exterior
                 span.stop-interior {{stop_name}}
             | {{#if editing}}
             .prediction-config
+                select.form-control.agency-list
+                    option Agency
+                    | {{#each agencies}}
+                    <option {{#ifEquals value ../agency}} selected="selected" {{/ifEquals}} value="{{value}}"> {{name}} </option>
+                    | {{/each}}
                 select.form-control.route-list
                     option Routes
                     | {{#each routes}}
