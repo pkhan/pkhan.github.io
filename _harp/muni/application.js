@@ -201,6 +201,8 @@ App.Models.Prediction = App.Model.extend({
             this.routes.fetch().done(function() {
                 prediction.trigger('sync', prediction);
             });
+        } else {
+            this.trigger('sync', this);
         }
     },
     setRoute: function(routeTag) {
